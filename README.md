@@ -7,13 +7,21 @@
 打开 PowerShell（Win + X → 终端 / PowerShell），粘贴执行：
 
 ```powershell
-irm https://raw.githubusercontent.com/ZPTDGIT/seagull-opencode/main/install.ps1 | iex
+iex ((irm https://raw.githubusercontent.com/ZPTDGIT/seagull-opencode/main/install.ps1) -replace '^[\uFEFF]','')
 ```
 
 国内网络如果 raw.githubusercontent.com 连不上，用镜像：
 
 ```powershell
-irm https://gh-proxy.com/https://raw.githubusercontent.com/ZPTDGIT/seagull-opencode/main/install.ps1 | iex
+iex ((irm https://gh-proxy.com/https://raw.githubusercontent.com/ZPTDGIT/seagull-opencode/main/install.ps1) -replace '^[\uFEFF]','')
+```
+
+> `-replace '^[\uFEFF]',''` 是给 Windows PowerShell 5.1 剥离 UTF-8 BOM 用的，别删。
+
+如果还有问题，用两步法（先落盘再执行，最稳）：
+
+```powershell
+$p="$env:TEMP\seagull-install.ps1"; irm https://raw.githubusercontent.com/ZPTDGIT/seagull-opencode/main/install.ps1 -OutFile $p; powershell -NoProfile -ExecutionPolicy Bypass -File $p
 ```
 
 下载源在脚本内自带三级自动回退（GitHub → gh-proxy → ghfast），通常直接成功。
