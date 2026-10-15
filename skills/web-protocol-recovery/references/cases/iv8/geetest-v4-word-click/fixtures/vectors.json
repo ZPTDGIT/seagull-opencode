@@ -1,0 +1,23 @@
+{
+  "caseId": "iv8-geetest-v4-word-click",
+  "loadShape": {
+    "riskType": "word",
+    "captchaType": "word",
+    "requiredFields": ["risk_type", "lot_number", "payload", "process_token", "payload_protocol", "pt", "pow_detail", "imgs", "ques"]
+  },
+  "text": {"input": "  目标 文字 ", "expected": "目标文字"},
+  "points": {
+    "imageSize": [300, 200],
+    "pixels": [[150, 100], [30, 40], [299, 199]],
+    "wire": [[5000, 5000], [1000, 2000], [9967, 9950]]
+  },
+  "answer": {
+    "passtime": 1200,
+    "expected": {"passtime": 1200, "userresponse": [[5000, 5000], [1000, 2000], [9967, 9950]]}
+  },
+  "success": {"status": "success", "data": {"result": "success", "fail_count": 0}},
+  "entrySha256": "94e73e7d0876d6bde970a55c12626de13e801935bd287da2b296d71a561be668",
+  "testArtifactSha256": "ae03f11bbb36b84b686f74ac8d641a0768be32dc0f5e51073919f6094c47ebda",
+  "activeScope": "offline-only",
+  "passed": true
+}

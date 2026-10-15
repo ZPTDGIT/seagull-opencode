@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "web-protocol-recovery-case",
+  "caseId": "camoufox-jsvmp-xhr-interceptor-env-emulation",
+  "revision": 4,
+  "status": "verified",
+  "family": "signer",
+  "runtime": "python-node",
+  "caseKind": "evidence",
+  "verificationClass": "historical-user-attested",
+  "requiresFreshVerification": true,
+  "secretPolicy": "redacted-pull-live",
+  "match": {
+    "signals": [
+      "sdk:webmssdk",
+      "sdk:byted_acrawler",
+      "config:_SdkGlueInit",
+      "parameter:a_bogus",
+      "method:xhr-interceptor-jsdom"
+    ],
+    "minimumIndependentSignals": 2,
+    "negativeSignals": []
+  },
+  "protocolPatterns": [
+    "sdk:webmssdk",
+    "sdk:byted_acrawler",
+    "config:_SdkGlueInit",
+    "parameter:a_bogus",
+    "method:xhr-interceptor-jsdom"
+  ],
+  "product": {
+    "vendor": "ByteDance",
+    "product": "JSVMP a_bogus signing",
+    "version": "legacy",
+    "subtype": "xhr-interceptor-jsdom-env-emulation"
+  },
+  "dependencies": {
+    "camoufox": "connected runtime",
+    "javascript": "target supplied"
+  },
+  "preRead": [],
+  "liveState": {
+    "mode": "browser-export-json",
+    "retention": "memory-only",
+    "requiredCookies": [
+      "ttwid"
+    ],
+    "optionalCookies": [
+      "msToken",
+      "odin_tt",
+      "__ac_nonce",
+      "__ac_signature",
+      "s_v_web_id"
+    ],
+    "cookieNamePatterns": [],
+    "storageKeys": []
+  },
+  "artifacts": {
+    "process": {
+      "path": "PROCESS.md",
+      "sha256": "e38f10df751418e8a8a5053af4f6b30180ac8e10c2713aa00b956f625089596a"
+    },
+    "pullLiveState": {
+      "path": "pull_live_state.py",
+      "sha256": "b26444b4c4ffb80370074ffcc09ad3e18d23548f6da5dad01242bc566e5b1bba"
+    },
+    "assets": []
+  },
+  "verification": {
+    "sourceReference": "95be929~1",
+    "sourceReferenceResolution": {
+      "status": "unresolvable-in-current-repository",
+      "checkedAt": "2026-07-31T14:34:34+08:00",
+      "reason": "The reference is not a full object id and cannot be resolved by the current repository; it is provenance text only."
+    },
+    "requiresFreshVerification": true,
+    "metadataMigratedAt": "2026-08-04T15:15:02+08:00",
+    "lineEndingCorrection": "rev2: recomputed declared hashes against committed LF bytes; prior values hashed a CRLF Windows worktree and were unreproducible from a clean clone. No evidence, verification claim, or route changed.",
+    "routeCorrection": "rev4: requiredCurrentProviderChain now starts at chromium-recon. The historical chain still records camoufox because that is what produced this evidence, but SKILL.md forbids selecting camoufox on historical case provenance, so the current-target chain must not demand it."
+  },
+  "implementation": null,
+  "sourceStage": {
+    "provider": "camoufox",
+    "role": "reconnaissance",
+    "purpose": "source evidence"
+  },
+  "historicalProviderChain": [
+    {
+      "provider": "camoufox",
+      "role": "reconnaissance"
+    },
+    {
+      "provider": "browser-hooks",
+      "role": "protocol-recovery"
+    },
+    {
+      "provider": "python-node",
+      "role": "implementation",
+      "purpose": "env-patch strategy",
+      "strategy": "env-patch"
+    }
+  ],
+  "requiredCurrentProviderChain": [
+    {
+      "provider": "chromium-recon",
+      "role": "reconnaissance",
+      "purpose": "current-target evidence"
+    },
+    {
+      "provider": "browser-hooks",
+      "role": "protocol-recovery"
+    },
+    {
+      "provider": "python-node",
+      "role": "implementation",
+      "purpose": "env-patch strategy",
+      "strategy": "env-patch"
+    }
+  ]
+}

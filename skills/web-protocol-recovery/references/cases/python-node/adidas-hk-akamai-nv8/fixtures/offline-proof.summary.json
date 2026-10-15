@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "web-protocol-recovery-offline-proof",
+  "caseId": "adidas-hk-akamai-nv8",
+  "activeScope": "offline-only",
+  "passed": true,
+  "entrySha256": "50ec762469a707ffc8acf5b9c3e9bbe9e72dbb521b332ccc65fee5ec9313e9fe",
+  "testArtifactSha256": "4b2ca655a7b69c699a692a13a5899c779933213fff8252d4d1964220f711d2f8",
+  "acceptance": {
+    "command": "python -m unittest discover -s tests -v",
+    "checks": [
+      "sensor endpoint derivation removes query data (v=<uuid> variants) and rejects a missing marker",
+      "redacted sensor request shape validates",
+      "SFCC product fixture parses into three products",
+      "live egress guard rejects run(live=True)",
+      "NV8 executor segment captures a validated synthetic sensor artifact (environment-gated)",
+      "console report prints the sensor artifact and parsed product data",
+      "live collector record is provenance-only (separate delivery project; not shipped in the offline case library)"
+    ]
+  },
+  "result": {
+    "productCount": 3,
+    "derivedSensorEndpoint": "https://www.adidas.com.hk/synthMount--BzlJThIWBEYnu9r/K9m/sensor.js"
+  },
+  "nv8Executor": {
+    "status": "executed",
+    "runtime": "nv8 EdgeSandbox",
+    "node": "24.11",
+    "nv8RootSource": "NV8_ROOT",
+    "runnerArtifact": {
+      "sensorEndpoint": "https://www.adidas.com.hk/synthMount--BzlJThIWBEYnu9r/K9m/sensor.js",
+      "method": "POST",
+      "contentType": "application/json",
+      "bodyJsonKeys": [
+        "body"
+      ],
+      "bodyByteLength": 4210,
+      "outcome": "replayed"
+    },
+    "note": "executed at case preparation; tests skip this segment with a reason when the environment is absent"
+  }
+}

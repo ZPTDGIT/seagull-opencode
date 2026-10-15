@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "web-protocol-recovery-vector",
+  "caseId": "adidas-hk-akamai-nv8",
+  "target": {
+    "site": "adidas-hk",
+    "host": "www.adidas.com.hk",
+    "category": "summer_cs_promotion_2"
+  },
+  "runtime": {
+    "nodeMajor": 24,
+    "npmPackage": "nv8",
+    "importShape": "import { EdgeSandbox } from 'nv8'",
+    "api": "EdgeSandbox.create"
+  },
+  "challengeFetch": {
+    "redirectRule": "follow 3xx manually while accumulating Set-Cookie; the final hop decides challenge shell vs trusted page",
+    "observedVariants": ["301 redirect admission -> challenge shell", "200 challenge shell"]
+  },
+  "sensor": {
+    "scriptMountRule": "random multi-segment same-origin path; no fixed mount name",
+    "scriptQueryMarker": "v=<uuid>",
+    "scriptQueryVariants": ["&t=<challengeId>", "&ch=true"],
+    "htmlEntityRule": "decode &amp; in the src attribute before use",
+    "postMethod": "POST",
+    "postContentType": "application/json",
+    "bodyJsonKeys": ["body"],
+    "minObservedBodyBytes": 4000,
+    "derivedEndpointRule": "sensor script URL without query data"
+  },
+  "business": {
+    "endpoint": "https://www.adidas.com.hk/on/demandware.store/Sites-adidas-HK-Site/zh_HK/Search-UpdateGrid",
+    "query": {
+      "cgid": "summer_cs_promotion_2",
+      "format": "ajax",
+      "start": 0,
+      "sz": 48
+    },
+    "responseContentType": "text/html",
+    "observedBodyBytesApprox": 593000,
+    "observedProductCount": 82
+  },
+  "acceptance": {
+    "offlineProductCount": 3,
+    "rejectsLiveEgress": true,
+    "requiresCurrentLiveVerification": true
+  }
+}

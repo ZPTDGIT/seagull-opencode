@@ -1,0 +1,1520 @@
+{
+    "schemaVersion": "web-protocol-recovery-case-registry",
+    "cases": [
+        {
+            "caseId": "adidas-hk-akamai-nv8",
+            "family": "challenge",
+            "status": "verified",
+            "runtime": "python-node",
+            "caseKind": "implementation",
+            "implementation": {
+                "mode": "python-node",
+                "strategy": null,
+                "profile": null
+            },
+            "exactScopes": [
+                {
+                    "scheme": "https",
+                    "host": "www.adidas.com.hk",
+                    "port": 443,
+                    "routePrefix": "/zh/summer_cs_promotion_2"
+                },
+                {
+                    "scheme": "https",
+                    "host": "www.adidas.com.hk",
+                    "port": 443,
+                    "routePrefix": "/zh/search"
+                },
+                {
+                    "scheme": "https",
+                    "host": "www.adidas.com.hk",
+                    "port": 443,
+                    "routePrefix": "/on/demandware.store/Sites-adidas-HK-Site/zh_HK/Search-UpdateGrid"
+                }
+            ],
+            "match": {
+                "signals": [
+                    "vendor:akamai",
+                    "cookie:ak_bmsc",
+                    "script:sensor-v-uuid",
+                    "runtime:nv8",
+                    "api:sfcc-search-updategrid",
+                    "site:adidas-hk"
+                ],
+                "minimumIndependentSignals": 3,
+                "negativeSignals": [
+                    "vendor:river-security",
+                    "vendor:reese84",
+                    "alias:ruishu",
+                    "sdk:webmssdk",
+                    "runtime:iv8",
+                    "site:twayair",
+                    "queue:netfunnel"
+                ]
+            },
+            "providerPlan": [
+                {
+                    "provider": "chromium-recon",
+                    "role": "reconnaissance",
+                    "purpose": "current-target evidence"
+                },
+                {
+                    "provider": "akamai",
+                    "role": "protocol-recovery",
+                    "purpose": "protocol owner"
+                },
+                {
+                    "provider": "nv8",
+                    "role": "implementation",
+                    "purpose": "NV8 sensor artifact",
+                    "implementationMode": "python-node",
+                    "ownerProvider": "akamai"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "delivery"
+                }
+            ],
+            "manifest": {
+                "path": "python-node/adidas-hk-akamai-nv8/case.json",
+                "sha256": "bca6c5a9c77da76749b86f6aa668fb3201d8c16ee998afd91084baed9e9a6b5f"
+            },
+            "verificationClass": "freshly-verified",
+            "selectableAs": "proof"
+        },
+        {
+            "caseId": "camoufox-jsvmp-dual-sign-cacheopts",
+            "family": "signer",
+            "status": "verified",
+            "runtime": "python-node",
+            "caseKind": "evidence",
+            "implementation": null,
+            "exactScopes": [],
+            "match": {
+                "signals": [
+                    "sdk:webmssdk",
+                    "config:cacheOpts",
+                    "header:x-bogus",
+                    "header:x-gnarly"
+                ],
+                "minimumIndependentSignals": 2,
+                "negativeSignals": []
+            },
+            "providerPlan": [
+                {
+                    "provider": "chromium-recon",
+                    "role": "reconnaissance",
+                    "purpose": "current-target evidence"
+                },
+                {
+                    "provider": "browser-hooks",
+                    "role": "protocol-recovery"
+                },
+                {
+                    "provider": "ast",
+                    "role": "protocol-recovery"
+                }
+            ],
+            "manifest": {
+                "path": "python-node/jsvmp-dual-sign-cacheopts/case.json",
+                "sha256": "56fc9026b59902998c3a0c1610a92989adf29aaf29ccd1c751dd5ef46da7550b"
+            },
+            "verificationClass": "historical-user-attested",
+            "selectableAs": "template"
+        },
+        {
+            "caseId": "camoufox-jsvmp-ruishu6-cookie-412-sdenv",
+            "family": "challenge",
+            "status": "verified",
+            "runtime": "python-node",
+            "caseKind": "evidence",
+            "implementation": null,
+            "exactScopes": [],
+            "match": {
+                "signals": [
+                    "vendor:river-security",
+                    "alias:ruishu",
+                    "version:6",
+                    "challenge:http-412",
+                    "state:$_ts-nsd-cd",
+                    "cookie:client-T-suffix"
+                ],
+                "minimumIndependentSignals": 3,
+                "negativeSignals": [
+                    "site:cqvip",
+                    "site:chinatax",
+                    "site:chng",
+                    "site:customs",
+                    "flow:search-replay",
+                    "runtime:iv8"
+                ]
+            },
+            "providerPlan": [
+                {
+                    "provider": "chromium-recon",
+                    "role": "reconnaissance",
+                    "purpose": "current-target evidence"
+                },
+                {
+                    "provider": "python-node",
+                    "role": "implementation",
+                    "purpose": "env-patch strategy",
+                    "strategy": "env-patch"
+                }
+            ],
+            "manifest": {
+                "path": "python-node/jsvmp-ruishu6-cookie-412-sdenv/case.json",
+                "sha256": "d637220d37d335caf658a4baed4fecbfb2fcbbf79cd6d886c80b74251b17315c"
+            },
+            "verificationClass": "historical-user-attested",
+            "selectableAs": "template"
+        },
+        {
+            "caseId": "camoufox-jsvmp-xhr-interceptor-env-emulation",
+            "family": "signer",
+            "status": "verified",
+            "runtime": "python-node",
+            "caseKind": "evidence",
+            "implementation": null,
+            "exactScopes": [],
+            "match": {
+                "signals": [
+                    "sdk:webmssdk",
+                    "sdk:byted_acrawler",
+                    "config:_SdkGlueInit",
+                    "parameter:a_bogus",
+                    "method:xhr-interceptor-jsdom"
+                ],
+                "minimumIndependentSignals": 2,
+                "negativeSignals": []
+            },
+            "providerPlan": [
+                {
+                    "provider": "chromium-recon",
+                    "role": "reconnaissance",
+                    "purpose": "current-target evidence"
+                },
+                {
+                    "provider": "browser-hooks",
+                    "role": "protocol-recovery"
+                },
+                {
+                    "provider": "python-node",
+                    "role": "implementation",
+                    "purpose": "env-patch strategy",
+                    "strategy": "env-patch"
+                }
+            ],
+            "manifest": {
+                "path": "python-node/jsvmp-xhr-interceptor-env-emulation/case.json",
+                "sha256": "c4f567e57cbdb7e48f79975ffae8a9e2ae637cec28fd3e6054311422dde2b4ad"
+            },
+            "verificationClass": "historical-user-attested",
+            "selectableAs": "template"
+        },
+        {
+            "caseId": "camoufox-universal-vmp-instrumentation",
+            "family": "signer",
+            "status": "verified",
+            "runtime": "python-node",
+            "caseKind": "evidence",
+            "implementation": null,
+            "exactScopes": [],
+            "match": {
+                "signals": [
+                    "structure:while-switch-vmp",
+                    "method:source-instrumentation",
+                    "evidence:hot-key-trace"
+                ],
+                "minimumIndependentSignals": 2,
+                "negativeSignals": []
+            },
+            "providerPlan": [
+                {
+                    "provider": "chromium-recon",
+                    "role": "reconnaissance",
+                    "purpose": "current-target evidence"
+                },
+                {
+                    "provider": "browser-hooks",
+                    "role": "protocol-recovery"
+                },
+                {
+                    "provider": "ast",
+                    "role": "protocol-recovery"
+                }
+            ],
+            "manifest": {
+                "path": "python-node/universal-vmp-instrumentation/case.json",
+                "sha256": "d0f9c9f1829299a9988f9b8b2a50ccbaed61c0edf8777bf34691db46e8104bfa"
+            },
+            "verificationClass": "historical-user-attested",
+            "selectableAs": "template"
+        },
+        {
+            "caseId": "iv8-bangkokair-reese84-booking",
+            "family": "challenge",
+            "status": "verified",
+            "runtime": "iv8",
+            "caseKind": "evidence",
+            "implementation": null,
+            "exactScopes": [
+                {
+                    "scheme": "https",
+                    "host": "digital.bangkokair.com",
+                    "port": 443,
+                    "routePrefix": "/booking"
+                },
+                {
+                    "scheme": "https",
+                    "host": "digital.bangkokair.com",
+                    "port": 443,
+                    "routePrefix": "/_Incapsula_Resource"
+                },
+                {
+                    "scheme": "https",
+                    "host": "api-des.bangkokair.com",
+                    "port": 443,
+                    "routePrefix": "/v1/security/oauth2/token"
+                },
+                {
+                    "scheme": "https",
+                    "host": "api-des.bangkokair.com",
+                    "port": 443,
+                    "routePrefix": "/v2/search/air-bounds"
+                }
+            ],
+            "match": {
+                "signals": [
+                    "cookie:reese84",
+                    "header:x-d-token",
+                    "script:initializeProtection",
+                    "response:token-renew-cookie-domain",
+                    "challenge:randomized-path",
+                    "resource:incapsula-swji",
+                    "business:x-d-token-consumer",
+                    "api:amadeus-dapi",
+                    "site:bangkokair"
+                ],
+                "minimumIndependentSignals": 2,
+                "requiredSignalGroups": [
+                    {
+                        "name": "reese84-native",
+                        "anyOf": [
+                            "cookie:reese84",
+                            "header:x-d-token",
+                            "script:initializeProtection",
+                            "response:token-renew-cookie-domain"
+                        ]
+                    },
+                    {
+                        "name": "independent-corroboration",
+                        "anyOf": [
+                            "challenge:randomized-path",
+                            "resource:incapsula-swji",
+                            "business:x-d-token-consumer"
+                        ]
+                    }
+                ],
+                "negativeSignals": [
+                    "vendor:akamai",
+                    "vendor:river-security",
+                    "alias:ruishu",
+                    "sdk:webmssdk"
+                ]
+            },
+            "providerPlan": [
+                {
+                    "provider": "reese84",
+                    "role": "protocol-recovery",
+                    "purpose": "protocol and acceptance owner"
+                },
+                {
+                    "provider": "iv8",
+                    "role": "implementation",
+                    "purpose": "artifact implementation"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "delivery"
+                }
+            ],
+            "manifest": {
+                "path": "iv8/bangkokair-reese84-booking/case.json",
+                "sha256": "591736366e5b4987f15c086782fab2b8a86f5f1fb96a0e9c36062a97d3261f50"
+            },
+            "verificationClass": "historical-user-attested",
+            "selectableAs": "template"
+        },
+        {
+            "caseId": "iv8-chinatax-ruishu",
+            "family": "challenge",
+            "status": "verified",
+            "runtime": "iv8",
+            "caseKind": "evidence",
+            "implementation": null,
+            "exactScopes": [
+                {
+                    "scheme": "http",
+                    "host": "chongqing.chinatax.gov.cn",
+                    "port": 8888,
+                    "routePrefix": "/qxzfgs/wz/xzcf/swxzybcxcfjg"
+                },
+                {
+                    "scheme": "http",
+                    "host": "chongqing.chinatax.gov.cn",
+                    "port": 8888,
+                    "routePrefix": "/api/loadNewsInfo"
+                }
+            ],
+            "match": {
+                "signals": [
+                    "vendor:river-security",
+                    "alias:ruishu",
+                    "flow:two-stage-cookie",
+                    "transport:xhr-rewrite",
+                    "site:chinatax"
+                ],
+                "minimumIndependentSignals": 3,
+                "negativeSignals": [
+                    "site:chng",
+                    "site:customs",
+                    "site:cqvip",
+                    "version:6"
+                ]
+            },
+            "providerPlan": [
+                {
+                    "provider": "river-security",
+                    "role": "protocol-recovery",
+                    "purpose": "protocol owner"
+                },
+                {
+                    "provider": "iv8",
+                    "role": "implementation",
+                    "purpose": "artifact implementation",
+                    "ownerProvider": "river-security"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "delivery"
+                }
+            ],
+            "manifest": {
+                "path": "iv8/chinatax-ruishu/case.json",
+                "sha256": "db59329a7e79a3dcaf25c54c266095c7b2bb0dea02421b6c502ff511e099d1ff"
+            },
+            "verificationClass": "historical-user-attested",
+            "selectableAs": "template"
+        },
+        {
+            "caseId": "iv8-chng-ruishu-announcement",
+            "family": "challenge",
+            "status": "verified",
+            "runtime": "iv8",
+            "caseKind": "evidence",
+            "implementation": null,
+            "exactScopes": [
+                {
+                    "scheme": "https",
+                    "host": "ec.chng.com.cn",
+                    "port": 443,
+                    "routePrefix": "/channel/home"
+                },
+                {
+                    "scheme": "https",
+                    "host": "ec.chng.com.cn",
+                    "port": 443,
+                    "routePrefix": "/scm-uiaoauth-web/s/business/uiaouth/queryAnnouncementByTitle"
+                }
+            ],
+            "match": {
+                "signals": [
+                    "vendor:river-security",
+                    "alias:ruishu",
+                    "flow:two-stage-cookie",
+                    "transport:xhr-rewrite",
+                    "site:chng"
+                ],
+                "minimumIndependentSignals": 3,
+                "negativeSignals": [
+                    "site:chinatax",
+                    "site:customs",
+                    "site:cqvip",
+                    "version:6"
+                ]
+            },
+            "providerPlan": [
+                {
+                    "provider": "river-security",
+                    "role": "protocol-recovery",
+                    "purpose": "protocol owner"
+                },
+                {
+                    "provider": "iv8",
+                    "role": "implementation",
+                    "purpose": "artifact implementation",
+                    "ownerProvider": "river-security"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "delivery"
+                }
+            ],
+            "manifest": {
+                "path": "iv8/chng-ruishu-announcement/case.json",
+                "sha256": "078f8b6b62783b9bcb907819f64730255a39658e1885011867cd414722ba9248"
+            },
+            "verificationClass": "historical-user-attested",
+            "selectableAs": "template"
+        },
+        {
+            "caseId": "iv8-cqvip-journal-search",
+            "family": "challenge",
+            "status": "verified",
+            "runtime": "iv8",
+            "caseKind": "evidence",
+            "implementation": null,
+            "exactScopes": [
+                {
+                    "scheme": "https",
+                    "host": "qikan.cqvip.com",
+                    "port": 443,
+                    "routePrefix": "/Qikan/Search"
+                },
+                {
+                    "scheme": "https",
+                    "host": "qikan.cqvip.com",
+                    "port": 443,
+                    "routePrefix": "/Search"
+                }
+            ],
+            "match": {
+                "signals": [
+                    "vendor:river-security",
+                    "alias:ruishu",
+                    "challenge:http-412",
+                    "state:$_ts-nsd-cd",
+                    "script-attr:r-m",
+                    "cookie:generated-t",
+                    "flow:search-replay",
+                    "site:cqvip"
+                ],
+                "minimumIndependentSignals": 3,
+                "negativeSignals": [
+                    "version:6",
+                    "cookie:client-T-suffix",
+                    "runtime:python-node",
+                    "site:chinatax",
+                    "site:chng",
+                    "site:customs"
+                ]
+            },
+            "providerPlan": [
+                {
+                    "provider": "river-security",
+                    "role": "protocol-recovery",
+                    "purpose": "protocol owner"
+                },
+                {
+                    "provider": "iv8",
+                    "role": "implementation",
+                    "purpose": "artifact implementation",
+                    "ownerProvider": "river-security"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "delivery"
+                }
+            ],
+            "manifest": {
+                "path": "iv8/cqvip-journal-search/case.json",
+                "sha256": "2e1714ae5086e46eb4b79c6260810053908443b1ff842863379b43033cc17efa"
+            },
+            "verificationClass": "historical-user-attested",
+            "selectableAs": "template"
+        },
+        {
+            "caseId": "iv8-customs-ruishu",
+            "family": "challenge",
+            "status": "verified",
+            "runtime": "iv8",
+            "caseKind": "evidence",
+            "implementation": null,
+            "exactScopes": [
+                {
+                    "scheme": "http",
+                    "host": "credit.customs.gov.cn",
+                    "port": 80,
+                    "routePrefix": "/ccppwebserver/pages/ccpp/html/directory.html"
+                },
+                {
+                    "scheme": "http",
+                    "host": "credit.customs.gov.cn",
+                    "port": 80,
+                    "routePrefix": "/ccppserver/ccpp/queryList"
+                }
+            ],
+            "match": {
+                "signals": [
+                    "vendor:river-security",
+                    "alias:ruishu",
+                    "flow:two-stage-cookie",
+                    "transport:xhr-rewrite",
+                    "site:customs"
+                ],
+                "minimumIndependentSignals": 3,
+                "negativeSignals": [
+                    "site:chinatax",
+                    "site:chng",
+                    "site:cqvip",
+                    "version:6"
+                ]
+            },
+            "providerPlan": [
+                {
+                    "provider": "river-security",
+                    "role": "protocol-recovery",
+                    "purpose": "protocol owner"
+                },
+                {
+                    "provider": "iv8",
+                    "role": "implementation",
+                    "purpose": "artifact implementation",
+                    "ownerProvider": "river-security"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "delivery"
+                }
+            ],
+            "manifest": {
+                "path": "iv8/customs-ruishu/case.json",
+                "sha256": "a1c9458ba25d6e5b92f1a092b62df80ac06b39a304f63ae9a0de8014d0604fd6"
+            },
+            "verificationClass": "historical-user-attested",
+            "selectableAs": "template"
+        },
+        {
+            "caseId": "iv8-douyin-bdms",
+            "family": "signer",
+            "status": "verified",
+            "runtime": "iv8",
+            "caseKind": "evidence",
+            "implementation": null,
+            "exactScopes": [],
+            "match": {
+                "signals": [
+                    "sdk:bdms",
+                    "parameter:a_bogus",
+                    "transport:netlog-xhr",
+                    "site:douyin"
+                ],
+                "minimumIndependentSignals": 2,
+                "negativeSignals": []
+            },
+            "providerPlan": [
+                {
+                    "provider": "iv8",
+                    "role": "implementation",
+                    "purpose": "artifact implementation"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "delivery"
+                }
+            ],
+            "manifest": {
+                "path": "iv8/douyin-bdms/case.json",
+                "sha256": "285ff68d44990a0bdbad2322cd55b047e65c157cfd66c8babb640ee754eb7667"
+            },
+            "verificationClass": "historical-user-attested",
+            "selectableAs": "template"
+        },
+        {
+            "caseId": "iv8-geetest-v4-slider",
+            "family": "verifier",
+            "status": "verified",
+            "runtime": "iv8",
+            "caseKind": "evidence",
+            "implementation": null,
+            "exactScopes": [],
+            "match": {
+                "signals": [
+                    "vendor:geetest",
+                    "version:v4",
+                    "captcha-type:slider",
+                    "protocol:slide",
+                    "request:risk_type-slide",
+                    "response:captcha_type-slide",
+                    "response:bg-slice",
+                    "wire:setLeft-td"
+                ],
+                "minimumIndependentSignals": 3,
+                "requiredSignalGroups": [
+                    {
+                        "name": "gt4-request-subtype",
+                        "anyOf": [
+                            "request:risk_type-slide"
+                        ]
+                    },
+                    {
+                        "name": "gt4-response-subtype",
+                        "anyOf": [
+                            "response:captcha_type-slide"
+                        ]
+                    },
+                    {
+                        "name": "slider-shape",
+                        "anyOf": [
+                            "response:bg-slice",
+                            "wire:setLeft-td"
+                        ]
+                    }
+                ],
+                "negativeSignals": []
+            },
+            "providerPlan": [
+                {
+                    "provider": "verifier",
+                    "role": "protocol-recovery",
+                    "purpose": "protocol owner"
+                },
+                {
+                    "provider": "iv8",
+                    "role": "implementation",
+                    "purpose": "artifact implementation",
+                    "ownerProvider": "verifier"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "delivery"
+                }
+            ],
+            "manifest": {
+                "path": "iv8/geetest-v4-slider/case.json",
+                "sha256": "859cb8ca0187ab5edc21e3ca73fe1bffceedbc8c124d452b769c4cd700218dec"
+            },
+            "verificationClass": "historical-user-attested",
+            "selectableAs": "template"
+        },
+        {
+            "caseId": "iv8-geetest-v4-word-click",
+            "family": "verifier",
+            "status": "verified",
+            "runtime": "iv8",
+            "caseKind": "implementation",
+            "implementation": {
+                "mode": "iv8",
+                "strategy": "word-click-coordinate-wire-artifact",
+                "profile": null
+            },
+            "exactScopes": [],
+            "match": {
+                "signals": [
+                    "vendor:geetest",
+                    "version:v4",
+                    "captcha-type:word-click",
+                    "request:risk_type-word",
+                    "response:captcha_type-word",
+                    "response:imgs-ques",
+                    "wire:userresponse-0-10000"
+                ],
+                "minimumIndependentSignals": 3,
+                "requiredSignalGroups": [
+                    {
+                        "name": "gt4-request-subtype",
+                        "anyOf": [
+                            "request:risk_type-word"
+                        ]
+                    },
+                    {
+                        "name": "gt4-response-subtype",
+                        "anyOf": [
+                            "response:captcha_type-word"
+                        ]
+                    },
+                    {
+                        "name": "word-click-shape",
+                        "anyOf": [
+                            "response:imgs-ques",
+                            "wire:userresponse-0-10000"
+                        ]
+                    }
+                ],
+                "negativeSignals": [
+                    "captcha-type:slide",
+                    "captcha-type:nine-grid",
+                    "captcha-type:icon-click",
+                    "captcha-type:ordered-text"
+                ]
+            },
+            "providerPlan": [
+                {
+                    "provider": "verifier",
+                    "role": "protocol-recovery",
+                    "purpose": "current word subtype and semantic acceptance"
+                },
+                {
+                    "provider": "iv8",
+                    "role": "implementation",
+                    "purpose": "narrow w artifact",
+                    "ownerProvider": "verifier"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "Python-owned live egress"
+                }
+            ],
+            "manifest": {
+                "path": "iv8/geetest-v4-word-click/case.json",
+                "sha256": "eaf25f4c86e68b64f8b3fae8ea360bdbc1ce6cd97aa7a173d53c42cb1614259f"
+            },
+            "verificationClass": "freshly-verified",
+            "selectableAs": "proof"
+        },
+        {
+            "caseId": "iv8-jd-h5st",
+            "family": "signer",
+            "status": "verified",
+            "runtime": "iv8",
+            "caseKind": "implementation",
+            "implementation": {
+                "mode": "iv8",
+                "strategy": null,
+                "profile": null
+            },
+            "exactScopes": [
+                {
+                    "scheme": "https",
+                    "host": "m.jd.com",
+                    "port": 443,
+                    "routePrefix": "/"
+                },
+                {
+                    "scheme": "https",
+                    "host": "api.m.jd.com",
+                    "port": 443,
+                    "routePrefix": "/api"
+                },
+                {
+                    "scheme": "https",
+                    "host": "storage.360buyimg.com",
+                    "port": 443,
+                    "routePrefix": "/webcontainer/main/js_security_v3_main.js"
+                },
+                {
+                    "scheme": "https",
+                    "host": "cactus.jd.com",
+                    "port": 443,
+                    "routePrefix": "/request_algo"
+                }
+            ],
+            "match": {
+                "signals": [
+                    "parameter:h5st",
+                    "runtime:ParamsSignMain",
+                    "site:jd",
+                    "script:js_security_v3_main",
+                    "api:api.m.jd.com"
+                ],
+                "minimumIndependentSignals": 3,
+                "negativeSignals": [
+                    "vendor:imperva",
+                    "vendor:akamai",
+                    "vendor:river-security",
+                    "alias:ruishu",
+                    "algorithm:jd-seData-python",
+                    "runtime:pure-python-h5st"
+                ]
+            },
+            "providerPlan": [
+                {
+                    "provider": "iv8",
+                    "role": "implementation",
+                    "purpose": "artifact implementation"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "delivery"
+                }
+            ],
+            "manifest": {
+                "path": "iv8/jd-h5st/case.json",
+                "sha256": "474f47f495c01e9a7628583ac73a6483ca3d6c0936dd0a6e3ad23de60170260b"
+            },
+            "verificationClass": "freshly-verified",
+            "selectableAs": "proof"
+        },
+        {
+            "caseId": "iv8-nmpa-md5-cookie",
+            "family": "signer",
+            "status": "verified",
+            "runtime": "iv8",
+            "caseKind": "evidence",
+            "implementation": null,
+            "exactScopes": [],
+            "match": {
+                "signals": [
+                    "algorithm:md5",
+                    "state:cookie-derived",
+                    "challenge:http-412",
+                    "site:nmpa"
+                ],
+                "minimumIndependentSignals": 2,
+                "negativeSignals": []
+            },
+            "providerPlan": [
+                {
+                    "provider": "river-security",
+                    "role": "protocol-recovery",
+                    "purpose": "protocol owner"
+                },
+                {
+                    "provider": "iv8",
+                    "role": "implementation",
+                    "purpose": "artifact implementation",
+                    "ownerProvider": "river-security"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "delivery"
+                }
+            ],
+            "manifest": {
+                "path": "iv8/nmpa-md5-cookie/case.json",
+                "sha256": "072e6b5e683c7b4fc6a2b6a94d8b13989308c7dd156794cf81f0742f634208f8"
+            },
+            "verificationClass": "historical-user-attested",
+            "selectableAs": "template"
+        },
+        {
+            "caseId": "iv8-ouyeel-202-cookie-url",
+            "family": "challenge",
+            "status": "verified",
+            "runtime": "iv8",
+            "caseKind": "evidence",
+            "implementation": null,
+            "exactScopes": [],
+            "match": {
+                "signals": [
+                    "challenge:http-202",
+                    "cookie:script-derived",
+                    "transport:url-rewrite",
+                    "site:ouyeel"
+                ],
+                "minimumIndependentSignals": 2,
+                "negativeSignals": []
+            },
+            "providerPlan": [
+                {
+                    "provider": "iv8",
+                    "role": "implementation",
+                    "purpose": "artifact implementation"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "delivery"
+                }
+            ],
+            "manifest": {
+                "path": "iv8/ouyeel-202-cookie-url/case.json",
+                "sha256": "f66d0a70c64d53fafabf27ce40553a7e53fc3f1a01f2229cf95d2591970c1325"
+            },
+            "verificationClass": "historical-user-attested",
+            "selectableAs": "template"
+        },
+        {
+            "caseId": "iv8-pdd-anti-content",
+            "family": "signer",
+            "status": "verified",
+            "runtime": "iv8",
+            "caseKind": "evidence",
+            "implementation": null,
+            "exactScopes": [],
+            "match": {
+                "signals": [
+                    "parameter:anti_content",
+                    "runtime:webpack",
+                    "module:fbeZ",
+                    "site:pdd"
+                ],
+                "minimumIndependentSignals": 2,
+                "negativeSignals": []
+            },
+            "providerPlan": [
+                {
+                    "provider": "iv8",
+                    "role": "implementation",
+                    "purpose": "artifact implementation"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "delivery"
+                }
+            ],
+            "manifest": {
+                "path": "iv8/pdd-anti-content/case.json",
+                "sha256": "05f7519eab120ec2ec728f0355d702b11e9355ec22d0664dd71858ef2970cd98"
+            },
+            "verificationClass": "historical-user-attested",
+            "selectableAs": "template"
+        },
+        {
+            "caseId": "iv8-tencent-tdc-slider",
+            "family": "verifier",
+            "status": "verified",
+            "runtime": "iv8",
+            "caseKind": "evidence",
+            "implementation": null,
+            "exactScopes": [],
+            "match": {
+                "signals": [
+                    "vendor:tencent",
+                    "product:tdc",
+                    "captcha-type:slider",
+                    "telemetry:eks-collect"
+                ],
+                "minimumIndependentSignals": 3,
+                "negativeSignals": []
+            },
+            "providerPlan": [
+                {
+                    "provider": "verifier",
+                    "role": "protocol-recovery",
+                    "purpose": "protocol owner"
+                },
+                {
+                    "provider": "iv8",
+                    "role": "implementation",
+                    "purpose": "artifact implementation",
+                    "ownerProvider": "verifier"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "delivery"
+                }
+            ],
+            "manifest": {
+                "path": "iv8/tencent-tdc-slider/case.json",
+                "sha256": "a6ae905c1ac626ece70f519f324f6559540ed9139df9a581a15de03144afe099"
+            },
+            "verificationClass": "historical-user-attested",
+            "selectableAs": "template"
+        },
+        {
+            "caseId": "iv8-twayair-akamai-availability",
+            "family": "challenge",
+            "status": "verified",
+            "runtime": "iv8",
+            "caseKind": "implementation",
+            "implementation": {
+                "mode": "iv8",
+                "strategy": null,
+                "profile": null
+            },
+            "exactScopes": [
+                {
+                    "scheme": "https",
+                    "host": "www.twayair.com",
+                    "port": 443,
+                    "routePrefix": "/app"
+                },
+                {
+                    "scheme": "https",
+                    "host": "www.twayair.com",
+                    "port": 443,
+                    "routePrefix": "/"
+                },
+                {
+                    "scheme": "https",
+                    "host": "www.twayair.com",
+                    "port": 443,
+                    "routePrefix": "/akam"
+                },
+                {
+                    "scheme": "https",
+                    "host": "www.twayair.com",
+                    "port": 443,
+                    "routePrefix": "/ajax/booking"
+                },
+                {
+                    "scheme": "https",
+                    "host": "csnf.trinityairways.com",
+                    "port": 443,
+                    "routePrefix": "/ts.wseq"
+                }
+            ],
+            "match": {
+                "signals": [
+                    "vendor:akamai",
+                    "cookie:bm_s",
+                    "cookie:ak_bmsc",
+                    "path:random-collector",
+                    "queue:netfunnel",
+                    "site:twayair"
+                ],
+                "minimumIndependentSignals": 2,
+                "negativeSignals": [
+                    "vendor:river-security",
+                    "alias:ruishu",
+                    "sdk:webmssdk"
+                ]
+            },
+            "providerPlan": [
+                {
+                    "provider": "chromium-recon",
+                    "role": "reconnaissance",
+                    "purpose": "current-target evidence"
+                },
+                {
+                    "provider": "akamai",
+                    "role": "protocol-recovery",
+                    "purpose": "protocol owner"
+                },
+                {
+                    "provider": "iv8",
+                    "role": "implementation",
+                    "purpose": "artifact implementation",
+                    "ownerProvider": "akamai"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "delivery"
+                }
+            ],
+            "manifest": {
+                "path": "iv8/twayair-akamai-availability/case.json",
+                "sha256": "173e597eb83a48a9bd36d6df448a9e36d2ec63fe1d7c8572d20ff1ec83606b6c"
+            },
+            "verificationClass": "freshly-verified",
+            "selectableAs": "proof"
+        },
+        {
+            "caseId": "iv8-xhs-homefeed",
+            "family": "signer",
+            "status": "verified",
+            "runtime": "iv8",
+            "caseKind": "implementation",
+            "implementation": {
+                "mode": "iv8",
+                "strategy": "frozen-mnsv2-runtime",
+                "profile": "xhs-pc-web-legacy"
+            },
+            "exactScopes": [],
+            "match": {
+                "signals": [
+                    "header:x-s",
+                    "header:x-t",
+                    "header:x-s-common",
+                    "runtime:mnsv2",
+                    "site:xhs"
+                ],
+                "minimumIndependentSignals": 2,
+                "negativeSignals": [
+                    "runtime:browser-only",
+                    "runtime:low-level-6545-only"
+                ]
+            },
+            "providerPlan": [
+                {
+                    "provider": "chromium-recon",
+                    "role": "reconnaissance",
+                    "purpose": "fresh runtime/state capture when invalidated"
+                },
+                {
+                    "provider": "iv8",
+                    "role": "implementation",
+                    "purpose": "frozen mnsv2 runtime artifact"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "Python-owned API egress and pagination"
+                }
+            ],
+            "manifest": {
+                "path": "iv8/xhs-homefeed/case.json",
+                "sha256": "e9791534d33b2730fc5ad0b3733c753c964eb61f5ee7d0f816e3808081ad8b27"
+            },
+            "verificationClass": "freshly-verified",
+            "selectableAs": "proof"
+        },
+        {
+            "caseId": "iv8-zhipin-stoken",
+            "family": "session",
+            "status": "verified",
+            "runtime": "iv8",
+            "caseKind": "evidence",
+            "implementation": null,
+            "exactScopes": [],
+            "match": {
+                "signals": [
+                    "cookie:__zp_stoken__",
+                    "challenge:code-37",
+                    "state:seed-name-ts"
+                ],
+                "minimumIndependentSignals": 2,
+                "negativeSignals": []
+            },
+            "providerPlan": [
+                {
+                    "provider": "iv8",
+                    "role": "implementation",
+                    "purpose": "artifact implementation"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "delivery"
+                }
+            ],
+            "manifest": {
+                "path": "iv8/zhipin-stoken/case.json",
+                "sha256": "ae8065e9a4ca2976726a4e221f427ff459bb735d443b02c873e449498d4c013a"
+            },
+            "verificationClass": "historical-user-attested",
+            "selectableAs": "template"
+        },
+        {
+            "caseId": "pure-python-bandai-card-miniapp-home-goods-aes-sign",
+            "family": "signer",
+            "status": "verified",
+            "runtime": "pure-python",
+            "caseKind": "implementation",
+            "implementation": {
+                "mode": "pure-python",
+                "strategy": null,
+                "profile": null
+            },
+            "exactScopes": [
+                {
+                    "scheme": "https",
+                    "host": "bdmatchapi.windoent.com",
+                    "port": 443,
+                    "routePrefix": "/h5/goods/index"
+                },
+                {
+                    "scheme": "https",
+                    "host": "appsevice.windoent.com",
+                    "port": 443,
+                    "routePrefix": "/ct"
+                }
+            ],
+            "match": {
+                "signals": [
+                    "platform:wechat-miniapp",
+                    "site:windoent",
+                    "product:bandai-card",
+                    "api:/h5/goods/index",
+                    "header:Mini-User-Agent",
+                    "algorithm:aes-cbc-server-time"
+                ],
+                "minimumIndependentSignals": 3,
+                "negativeSignals": [
+                    "vendor:akamai",
+                    "vendor:river-security",
+                    "vendor:reese84",
+                    "runtime:browser-required",
+                    "flow:authenticated-order-payment"
+                ]
+            },
+            "providerPlan": [
+                {
+                    "provider": "wechat-miniapp",
+                    "role": "reconnaissance",
+                    "purpose": "fresh target API and package evidence"
+                },
+                {
+                    "provider": "pure-python",
+                    "role": "implementation",
+                    "purpose": "deterministic artifact"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "live egress outside case entry"
+                }
+            ],
+            "manifest": {
+                "path": "pure-python/bandai-card-miniapp-home-goods-aes-sign/case.json",
+                "sha256": "8fef3a46d40f8f8999ed378cc7238a4fdfe8a75b05d6cf656cce17e2352edc2a"
+            },
+            "verificationClass": "freshly-verified",
+            "selectableAs": "proof"
+        },
+        {
+            "caseId": "pure-python-geetest-v4-nine-grid",
+            "family": "verifier",
+            "status": "verified",
+            "runtime": "pure-python",
+            "caseKind": "implementation",
+            "implementation": {
+                "mode": "pure-python",
+                "strategy": "execution-gated-model-assisted-tile-consensus",
+                "profile": null
+            },
+            "exactScopes": [],
+            "match": {
+                "signals": [
+                    "vendor:geetest",
+                    "version:v4",
+                    "captcha-type:nine-grid",
+                    "request:risk_type-nine",
+                    "response:captcha_type-nine",
+                    "response:imgs-ques-nine_nums",
+                    "wire:userresponse-one-based-row-col",
+                    "verify:data.result-success"
+                ],
+                "minimumIndependentSignals": 3,
+                "requiredSignalGroups": [
+                    {
+                        "name": "gt4-request-subtype",
+                        "anyOf": [
+                            "request:risk_type-nine"
+                        ]
+                    },
+                    {
+                        "name": "gt4-response-subtype",
+                        "anyOf": [
+                            "response:captcha_type-nine"
+                        ]
+                    },
+                    {
+                        "name": "nine-grid-shape",
+                        "anyOf": [
+                            "response:imgs-ques-nine_nums",
+                            "wire:userresponse-one-based-row-col"
+                        ]
+                    }
+                ],
+                "negativeSignals": [
+                    "captcha-type:slide",
+                    "captcha-type:word-click",
+                    "captcha-type:icon-click",
+                    "vendor:akamai",
+                    "vendor:river-security",
+                    "alias:ruishu"
+                ]
+            },
+            "providerPlan": [
+                {
+                    "provider": "verifier",
+                    "role": "protocol-recovery",
+                    "purpose": "current subtype and verifier acceptance"
+                },
+                {
+                    "provider": "pure-python",
+                    "role": "implementation",
+                    "purpose": "offline model and protocol artifact",
+                    "ownerProvider": "verifier"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "gated live egress"
+                }
+            ],
+            "manifest": {
+                "path": "pure-python/geetest-v4-nine-grid/case.json",
+                "sha256": "15be3dee1ae06224dd42943937f582a73c270cac7161f43291939abfe82fc99b"
+            },
+            "verificationClass": "freshly-verified",
+            "selectableAs": "proof"
+        },
+        {
+            "caseId": "pure-python-jd-h5st",
+            "family": "signer",
+            "status": "verified",
+            "runtime": "pure-python",
+            "caseKind": "implementation",
+            "implementation": {
+                "mode": "pure-python",
+                "strategy": null,
+                "profile": null
+            },
+            "exactScopes": [
+                {
+                    "scheme": "https",
+                    "host": "m.jd.com",
+                    "port": 443,
+                    "routePrefix": "/"
+                },
+                {
+                    "scheme": "https",
+                    "host": "api.m.jd.com",
+                    "port": 443,
+                    "routePrefix": "/api"
+                },
+                {
+                    "scheme": "https",
+                    "host": "cactus.jd.com",
+                    "port": 443,
+                    "routePrefix": "/request_algo"
+                }
+            ],
+            "match": {
+                "signals": [
+                    "parameter:h5st",
+                    "site:jd",
+                    "api:recommend_like_m",
+                    "request_algo:cactus.jd.com/request_algo",
+                    "appId:2088b",
+                    "algorithm:jd-seData-python"
+                ],
+                "minimumIndependentSignals": 3,
+                "negativeSignals": [
+                    "runtime:ParamsSignMain-required",
+                    "vendor:imperva",
+                    "vendor:akamai",
+                    "vendor:river-security",
+                    "alias:ruishu",
+                    "runtime:ParamsSignMain",
+                    "runtime:iv8-h5st",
+                    "script:js_security_v3_main"
+                ]
+            },
+            "providerPlan": [
+                {
+                    "provider": "chromium-recon",
+                    "role": "reconnaissance",
+                    "purpose": "current-target evidence"
+                },
+                {
+                    "provider": "iv8",
+                    "role": "implementation",
+                    "purpose": "historical evidence"
+                },
+                {
+                    "provider": "pure-python",
+                    "role": "implementation",
+                    "purpose": "artifact implementation"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "delivery"
+                }
+            ],
+            "manifest": {
+                "path": "pure-python/jd-h5st/case.json",
+                "sha256": "a59afa6fb21cc80dfc20101e3f16d4a604306704029de01dfaf3a633ce6a5b50"
+            },
+            "verificationClass": "freshly-verified",
+            "selectableAs": "proof"
+        },
+        {
+            "caseId": "python-node-pzds-aliyun-v2-goods-public",
+            "family": "verifier",
+            "status": "verified",
+            "runtime": "python-node",
+            "caseKind": "implementation",
+            "implementation": {
+                "mode": "python-node",
+                "strategy": "wasm-sidecar",
+                "profile": null
+            },
+            "exactScopes": [
+                {
+                    "scheme": "https",
+                    "host": "www.pzds.com",
+                    "port": 443,
+                    "routePrefix": "/goodsList"
+                },
+                {
+                    "scheme": "https",
+                    "host": "api.pzds.com",
+                    "port": 443,
+                    "routePrefix": "/api/web-client/v2/public/goodsPublic/page"
+                },
+                {
+                    "scheme": "https",
+                    "host": "device.captcha-open.aliyuncs.com",
+                    "port": 443,
+                    "routePrefix": "/"
+                },
+                {
+                    "scheme": "https",
+                    "host": "18152c0dc559302765e69a8f8bf3c191.captcha-pro-open.aliyuncs.com",
+                    "port": 443,
+                    "routePrefix": "/"
+                },
+                {
+                    "scheme": "https",
+                    "host": "18152c0dc559302765e69a8f8bf3c191-verify.captcha-pro-open.aliyuncs.com",
+                    "port": 443,
+                    "routePrefix": "/"
+                }
+            ],
+            "match": {
+                "signals": [
+                    "site:pzds",
+                    "api:goodsPublic/page",
+                    "vendor:aliyun-captcha-v2",
+                    "action:InitCaptchaV2",
+                    "action:VerifyCaptchaV2",
+                    "sidecar:DeviceConfig-Log2-Log3",
+                    "success:T001",
+                    "wasm:pzds-505c6f51-generate_sign",
+                    "header:X-Sign-Version-v18"
+                ],
+                "minimumIndependentSignals": 3,
+                "negativeSignals": [
+                    "vendor:akamai",
+                    "vendor:river-security",
+                    "alias:ruishu",
+                    "vendor:geetest",
+                    "vendor:tencent-tdc",
+                    "runtime:pure-python-only",
+                    "path:manual-slider-default",
+                    "path:decode1174-required"
+                ]
+            },
+            "providerPlan": [
+                {
+                    "provider": "chromium-recon",
+                    "role": "reconnaissance",
+                    "purpose": "current-target evidence"
+                },
+                {
+                    "provider": "verifier",
+                    "role": "protocol-recovery",
+                    "purpose": "protocol owner"
+                },
+                {
+                    "provider": "python-node",
+                    "role": "implementation",
+                    "purpose": "wasm sidecar artifact",
+                    "ownerProvider": "verifier",
+                    "strategy": "wasm-sidecar"
+                },
+                {
+                    "provider": "python-collector",
+                    "role": "delivery",
+                    "purpose": "delivery"
+                }
+            ],
+            "manifest": {
+                "path": "python-node/pzds-aliyun-v2-goods-public/case.json",
+                "sha256": "b6734cae67a5708d3897b24e88e357f63d4e76eda41e0e9adc7ff68854632f4c"
+            },
+            "verificationClass": "freshly-verified",
+            "selectableAs": "proof"
+        }
+    ]
+}

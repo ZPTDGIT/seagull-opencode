@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "web-protocol-recovery-case",
+  "caseId": "iv8-tencent-tdc-slider",
+  "revision": 4,
+  "status": "verified",
+  "family": "verifier",
+  "runtime": "iv8",
+  "caseKind": "evidence",
+  "verificationClass": "historical-user-attested",
+  "requiresFreshVerification": true,
+  "secretPolicy": "redacted-pull-live",
+  "match": {
+    "signals": [
+      "vendor:tencent",
+      "product:tdc",
+      "captcha-type:slider",
+      "telemetry:eks-collect"
+    ],
+    "minimumIndependentSignals": 3,
+    "negativeSignals": []
+  },
+  "protocolPatterns": [
+    "vendor:tencent",
+    "product:tdc",
+    "captcha-type:slider",
+    "telemetry:eks-collect"
+  ],
+  "product": {
+    "vendor": "Tencent",
+    "product": "TDC CAPTCHA",
+    "version": "legacy",
+    "subtype": "slider"
+  },
+  "preRead": [
+    {
+      "path": "references/providers/implementation/iv8/references/api-inventory.md",
+      "sha256": "f642f9afc27313e14722c9ec608208284385be913d2dcb573e424306dc195430"
+    }
+  ],
+  "liveState": {
+    "mode": "browser-export-json",
+    "retention": "memory-only",
+    "requiredCookies": [],
+    "optionalCookies": [],
+    "cookieNamePatterns": [],
+    "storageKeys": []
+  },
+  "artifacts": {
+    "process": {
+      "path": "PROCESS.md",
+      "sha256": "abdce47d96169646dc30bfe8767b69f8fc7202c3f5c743a02a9219d828dcd446"
+    },
+    "pullLiveState": {
+      "path": "pull_live_state.py",
+      "sha256": "7f7156cd1bc79c0b92daf5573826e7cecc387f40d49f160ee2d57fca615a0fa1"
+    },
+    "assets": []
+  },
+  "verification": {
+    "sourceCommit": "1e719718a25a52776b28518948715e6238576fe0",
+    "requiresFreshVerification": true,
+    "metadataMigratedAt": "2026-07-30T20:11:59+08:00",
+    "activeCaseScope": "template-evidence-only",
+    "dependencyPolicy": "historical-only; do not install from case reuse",
+    "migration": "Removed the active placeholder entry and corrected PROCESS.md to historical evidence-only guidance; archived implementation remains hash-bound and study-only.",
+    "lineEndingCorrection": "rev4: recomputed declared hashes against committed LF bytes; prior values hashed a CRLF Windows worktree and were unreproducible from a clean clone. No evidence, verification claim, or route changed."
+  },
+  "implementation": null,
+  "sourceStage": {
+    "provider": "iv8",
+    "role": "implementation",
+    "purpose": "source evidence"
+  },
+  "historicalProviderChain": [
+    {
+      "provider": "verifier",
+      "role": "protocol-recovery"
+    },
+    {
+      "provider": "iv8",
+      "role": "implementation"
+    },
+    {
+      "provider": "python-collector",
+      "role": "delivery"
+    }
+  ],
+  "requiredCurrentProviderChain": [
+    {
+      "provider": "verifier",
+      "role": "protocol-recovery",
+      "purpose": "protocol owner"
+    },
+    {
+      "provider": "iv8",
+      "role": "implementation",
+      "purpose": "artifact implementation",
+      "ownerProvider": "verifier"
+    },
+    {
+      "provider": "python-collector",
+      "role": "delivery",
+      "purpose": "delivery"
+    }
+  ],
+  "historicalReferences": [
+    {
+      "manifestPath": "references/case-live-reference-archive/MANIFEST.json",
+      "archivePath": "references/case-live-reference-archive/iv8/tencent-tdc-slider/entry.py",
+      "sha256": "bb668954ae9d25f67ffdb116f753ce59b854c14dcb4734b36873d11c80ecb24c",
+      "bytes": 15020,
+      "sourceCommit": "1e719718a25a52776b28518948715e6238576fe0",
+      "readPolicy": "study-only"
+    }
+  ],
+  "historicalDependencies": {
+    "python": ">=3.9",
+    "iv8": "installed runtime",
+    "requests": "installed",
+    "opencv": "optional",
+    "ddddocr": "optional"
+  }
+}

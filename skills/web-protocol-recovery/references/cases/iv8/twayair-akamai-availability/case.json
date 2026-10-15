@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "web-protocol-recovery-case",
+  "caseId": "iv8-twayair-akamai-availability",
+  "revision": 7,
+  "status": "verified",
+  "family": "challenge",
+  "runtime": "iv8",
+  "caseKind": "implementation",
+  "verificationClass": "freshly-verified",
+  "requiresFreshVerification": true,
+  "secretPolicy": "redacted-pull-live",
+  "match": {
+    "signals": [
+      "vendor:akamai",
+      "cookie:bm_s",
+      "cookie:ak_bmsc",
+      "path:random-collector",
+      "queue:netfunnel",
+      "site:twayair"
+    ],
+    "minimumIndependentSignals": 2,
+    "negativeSignals": [
+      "vendor:river-security",
+      "alias:ruishu",
+      "sdk:webmssdk"
+    ]
+  },
+  "exactScopes": [
+    {
+      "scheme": "https",
+      "host": "www.twayair.com",
+      "port": 443,
+      "routePrefix": "/app"
+    },
+    {
+      "scheme": "https",
+      "host": "www.twayair.com",
+      "port": 443,
+      "routePrefix": "/"
+    },
+    {
+      "scheme": "https",
+      "host": "www.twayair.com",
+      "port": 443,
+      "routePrefix": "/akam"
+    },
+    {
+      "scheme": "https",
+      "host": "www.twayair.com",
+      "port": 443,
+      "routePrefix": "/ajax/booking"
+    },
+    {
+      "scheme": "https",
+      "host": "csnf.trinityairways.com",
+      "port": 443,
+      "routePrefix": "/ts.wseq"
+    }
+  ],
+  "protocolPatterns": [
+    "vendor:akamai",
+    "cookie:bm_s",
+    "cookie:ak_bmsc",
+    "path:random-collector",
+    "queue:netfunnel",
+    "runtime:iv8-sensor-bridge",
+    "site:twayair"
+  ],
+  "product": {
+    "vendor": "Akamai",
+    "product": "Bot Manager",
+    "version": "web-sensor",
+    "subtype": "twayair-sensor-netfunnel"
+  },
+  "dependencies": {
+    "python": ">=3.11",
+    "iv8": "installed runtime (required for offline entry.py probe)",
+    "beautifulsoup4": "installed (parser tests / live parse)",
+    "lxml": "installed (parser tests / live parse)",
+    "curl_cffi": "live delivery only; use a TLS profile supported by the installed build; current source verification used chrome146"
+  },
+  "entryScope": {
+    "kind": "offline-probe",
+    "implementsLiveEgress": false,
+    "implementsCurlCffi": false,
+    "implementsFlightDateOverrides": false,
+    "proves": "iv8 parent/child Akamai sensor bridge offline vectors only"
+  },
+  "recommendedDeliveryNotes": {
+    "appliesTo": "live delivery / source project, not this offline entry.py",
+    "curlTlsProfile": "Use the highest supported current profile after probing the installed build; current source verification used chrome146. Do not force an older profile while debugging.",
+    "httpUaMajor": "Keep UA, Client Hints and TLS profile on the verified current-browser tuple unless running a separately measured experiment.",
+    "flightDateDefault": "date.today() + 7 days on host clock; same-day often empty inventory",
+    "flightDateOverrideEnv": "AKAMAI_FLIGHT_DATE=YYYY-MM-DD",
+    "routeOverrideEnv": "AKAMAI_DEPARTURE / AKAMAI_ARRIVAL",
+    "proxyFallbackEnv": "AKAMAI_DIRECT_FALLBACK=0 disables direct fallback when the default local Mihomo controller is absent",
+    "proxyOwnership": "Default local proxy may fall back to proxy=None when Mihomo is absent; explicit AKAMAI_PROXY is never silently replaced",
+    "batchExtension": "Optional delivery extension: max 2 routes x 2 dates, max concurrency 2, independent sessions/workers, shared process-wide budget, local-only result pagination",
+    "transportLesson": "A lower Chrome TLS/UA override changed chkSaleRoute from 200 to 403 on the same exit; preserve the verified current tuple."
+  },
+  "preRead": [
+    {
+      "path": "references/providers/implementation/iv8/references/api-inventory.md",
+      "sha256": "f642f9afc27313e14722c9ec608208284385be913d2dcb573e424306dc195430"
+    }
+  ],
+  "liveState": {
+    "mode": "browser-export-json",
+    "retention": "memory-only",
+    "requiredCookies": [],
+    "optionalCookies": [
+      "bm_s",
+      "bm_so",
+      "bm_ss",
+      "bm_sv",
+      "bm_mi",
+      "bm_lso",
+      "ak_bmsc",
+      "NetFunnel_ID",
+      "SESSION",
+      "WMONID",
+      "SETTINGS_REGION",
+      "SETTINGS_LANGUAGE",
+      "SETTINGS_CURRENCY"
+    ],
+    "cookieNamePatterns": [
+      "^bm_",
+      "^ak_"
+    ],
+    "storageKeys": [
+      "ak_bm_tab_id"
+    ]
+  },
+  "artifacts": {
+    "process": {
+      "path": "PROCESS.md",
+      "sha256": "ddbce0e49ad38df4f708d0f6743cd7b020d4e90d4dac5f92da804048ae31949b"
+    },
+    "pullLiveState": {
+      "path": "pull_live_state.py",
+      "sha256": "a16e9605848d948fdfab98c0e7d140f90781baee71efbed6e8fb6b999eb3cb75"
+    },
+    "assets": [
+      {
+        "path": "fixtures/vectors.json",
+        "sha256": "c5119b980b65fc9c6156711a510cec651b9ff85d79bd40255b2b7fa086255c8d"
+      },
+      {
+        "path": "fixtures/response.sample.json",
+        "sha256": "722b68beee48bb29e4db1d7015efb0c2a54575d34fcc00ced08819778fbbf245"
+      },
+      {
+        "path": "fixtures/offline-proof.summary.json",
+        "sha256": "389afb50192b78bc487bf75349e1fb1600242d388cbbb6b0b47ec7dab9b547a8"
+      },
+      {
+        "path": "LIVE_DELIVERY.md",
+        "sha256": "689b429e8c09c49a70b01de562c57b7f146c371a72cbc40ace5287fbbd89c7bf"
+      }
+    ],
+    "entry": {
+      "path": "entry.py",
+      "sha256": "08db55ced9f4a94f0ea8b43d3a75935c568dad2a9919c102d9d4ae125e4d8179"
+    }
+  },
+  "verification": {
+    "executed": true,
+    "passed": true,
+    "executedAt": "2026-08-23T16:46:58+08:00",
+    "testCommand": "python -m unittest discover -s tests -v",
+    "testArtifact": {
+      "path": "tests/test_vectors.py",
+      "sha256": "3983aee528af765f3ace8a718769b1c76e05fe7fb917634c08b1224a96aed728"
+    },
+    "evidenceArtifact": {
+      "path": "fixtures/offline-proof.summary.json",
+      "sha256": "389afb50192b78bc487bf75349e1fb1600242d388cbbb6b0b47ec7dab9b547a8"
+    },
+    "proof": {
+      "activeScope": "offline-only",
+      "offlineAcceptance": "iv8 synthetic sensor bridge counters, availability parser, and fixed vectors pass without live network egress",
+      "caseLocalTests": "python -m unittest discover -s tests -v",
+      "currentEntrySha256": "08db55ced9f4a94f0ea8b43d3a75935c568dad2a9919c102d9d4ae125e4d8179",
+      "currentTestArtifactSha256": "3983aee528af765f3ace8a718769b1c76e05fe7fb917634c08b1224a96aed728",
+      "currentLiveAcceptance": {
+        "classification": "current-source-live-acceptance",
+        "executedAt": "2026-08-23T16:43:22+08:00",
+        "currentAcceptance": true,
+        "summary": "single-task and batch acceptance passed: chooseItinerary 200, layerAvailabilityList 200, four independent route/date tasks at concurrency 2, local result pagination and repeated date verification passed"
+      },
+      "historicalLiveProof": {
+        "classification": "historical-project-provenance",
+        "executedAt": "2026-07-23",
+        "currentAcceptance": false,
+        "evidencePath": "fixtures/vectors.json",
+        "summary": "Source-project T'way availability replay is historical provenance and requires fresh current-target verification."
+      }
+    },
+    "lineEndingCorrection": "rev4: recomputed declared hashes against committed LF bytes; prior values hashed a CRLF Windows worktree and were unreproducible from a clean clone. No evidence, verification claim, or route changed."
+  },
+  "implementation": {
+    "mode": "iv8",
+    "strategy": null,
+    "profile": null
+  },
+  "sourceStage": {
+    "provider": "iv8",
+    "role": "implementation",
+    "purpose": "source evidence"
+  },
+  "historicalProviderChain": [
+    {
+      "provider": "chromium-recon",
+      "role": "reconnaissance"
+    },
+    {
+      "provider": "iv8",
+      "role": "implementation"
+    },
+    {
+      "provider": "python-collector",
+      "role": "delivery"
+    }
+  ],
+  "requiredCurrentProviderChain": [
+    {
+      "provider": "chromium-recon",
+      "role": "reconnaissance",
+      "purpose": "current-target evidence"
+    },
+    {
+      "provider": "akamai",
+      "role": "protocol-recovery",
+      "purpose": "protocol owner"
+    },
+    {
+      "provider": "iv8",
+      "role": "implementation",
+      "purpose": "artifact implementation",
+      "ownerProvider": "akamai"
+    },
+    {
+      "provider": "python-collector",
+      "role": "delivery",
+      "purpose": "delivery"
+    }
+  ]
+}

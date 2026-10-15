@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "web-protocol-recovery-vector",
+  "caseId": "iv8-jd-h5st",
+  "notes": "Redacted shapes only. Live signing requires current js_security_v3_main.js.",
+  "signInput": {
+    "appId": "2088b",
+    "appid": "jd-cphdeveloper-m",
+    "functionId": "recommend_like_m",
+    "bodyRaw": "{\"func\":\"item_rec\",\"recpos\":6163,\"param\":\"{\\\"pagenum\\\":1,\\\"pagecount\\\":20,\\\"startpos\\\":0,\\\"ptag\\\":\\\"\\\",\\\"sku\\\":\\\"\\\",\\\"cid1\\\":\\\"\\\",\\\"cid2\\\":\\\"\\\",\\\"cid3\\\":\\\"\\\"}\",\"clientPageId\":\"\",\"clientVersion\":\"2.0\"}",
+    "bodySha256": "ad96d069fd746f4fd2967911bb6b35b169b58cfdf115bea959deaa91d3acae65",
+    "bodyIsSha256Hex": true
+  },
+  "h5stShape": {
+    "minLength": 200,
+    "containsAppIdSegment": "2088b",
+    "segmentSeparator": ";"
+  },
+  "liveBundle": {
+    "urlPattern": "https://storage.360buyimg.com/webcontainer/main/js_security_v3_main.js?v=YYYYMMDD",
+    "observedLiveSizeApprox": 238135,
+    "historicalFrozenSizeApprox": 241829,
+    "sameAsFrozen": false
+  },
+  "productRowShape": {
+    "requiredKeys": ["id", "name"],
+    "priceKeysAnyOf": ["price", "jdPrice", "oriprice"],
+    "optionalKeys": ["link", "imgprefix", "imgbase", "ext"]
+  },
+  "invalidation": {
+    "frozenOnlyRecommendOften": 403,
+    "nonEmptyH5stNotEnough": true
+  },
+  "acceptanceMatrix": [
+    {
+      "bundle": "historical-frozen-assets",
+      "functionId": "recommend_like_m",
+      "expectSignNonEmpty": true,
+      "expectHttp": 403,
+      "expectProducts": false,
+      "note": "stale bundle can still emit h5st"
+    },
+    {
+      "bundle": "live-js_security_v3_main",
+      "functionId": "recommend_like_m",
+      "expectSignNonEmpty": true,
+      "expectHttp": 200,
+      "expectProducts": true,
+      "note": "default production path"
+    },
+    {
+      "bundle": "historical-frozen-assets",
+      "functionId": "m_search_promptwords",
+      "expectSignNonEmpty": true,
+      "expectHttp": 200,
+      "expectProducts": false,
+      "note": "lighter API may pass even when recommend is gated"
+    }
+  ],
+  "productOutputFields": [
+    "sku",
+    "name",
+    "price",
+    "jdPrice",
+    "oriprice",
+    "link",
+    "img",
+    "cate1",
+    "cate2",
+    "cate3",
+    "shopId",
+    "brandId"
+  ]
+}

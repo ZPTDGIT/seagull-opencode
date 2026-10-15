@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "web-protocol-recovery-case",
+  "caseId": "camoufox-jsvmp-ruishu6-cookie-412-sdenv",
+  "revision": 4,
+  "status": "verified",
+  "family": "challenge",
+  "runtime": "python-node",
+  "caseKind": "evidence",
+  "verificationClass": "historical-user-attested",
+  "requiresFreshVerification": true,
+  "secretPolicy": "redacted-pull-live",
+  "match": {
+    "signals": [
+      "vendor:river-security",
+      "alias:ruishu",
+      "version:6",
+      "challenge:http-412",
+      "state:$_ts-nsd-cd",
+      "cookie:client-T-suffix"
+    ],
+    "minimumIndependentSignals": 3,
+    "negativeSignals": [
+      "site:cqvip",
+      "site:chinatax",
+      "site:chng",
+      "site:customs",
+      "flow:search-replay",
+      "runtime:iv8"
+    ]
+  },
+  "protocolPatterns": [
+    "vendor:river-security",
+    "alias:ruishu",
+    "version:6",
+    "challenge:http-412",
+    "state:$_ts-nsd-cd",
+    "cookie:client-T-suffix"
+  ],
+  "product": {
+    "vendor": "River Security",
+    "product": "JS challenge",
+    "version": "6",
+    "subtype": "cookie-412-sdenv-jsdom"
+  },
+  "dependencies": {
+    "camoufox": "connected runtime",
+    "javascript": "target supplied"
+  },
+  "preRead": [],
+  "liveState": {
+    "mode": "browser-export-json",
+    "retention": "memory-only",
+    "requiredCookies": [],
+    "optionalCookies": [
+      "acw_tc"
+    ],
+    "cookieNamePatterns": [
+      ".*S$",
+      ".*T$"
+    ],
+    "storageKeys": []
+  },
+  "artifacts": {
+    "process": {
+      "path": "PROCESS.md",
+      "sha256": "d8b9dee7595173e4ec413e8c21f661676cb922d359e191b38ac0a971bcb9b6be"
+    },
+    "pullLiveState": {
+      "path": "pull_live_state.py",
+      "sha256": "d39636069908ee71d6d3e3b623e3aa61b6e523e77b9cc8b36d879872708ecbab"
+    },
+    "assets": []
+  },
+  "verification": {
+    "sourceReference": "95be929~1",
+    "sourceReferenceResolution": {
+      "status": "unresolvable-in-current-repository",
+      "checkedAt": "2026-07-31T14:34:34+08:00",
+      "reason": "The reference is not a full object id and cannot be resolved by the current repository; it is provenance text only."
+    },
+    "requiresFreshVerification": true,
+    "metadataMigratedAt": "2026-08-04T15:15:02+08:00",
+    "lineEndingCorrection": "rev2: recomputed declared hashes against committed LF bytes; prior values hashed a CRLF Windows worktree and were unreproducible from a clean clone. No evidence, verification claim, or route changed.",
+    "routeCorrection": "rev4: requiredCurrentProviderChain now starts at chromium-recon. The historical chain still records camoufox because that is what produced this evidence, but SKILL.md forbids selecting camoufox on historical case provenance, so the current-target chain must not demand it."
+  },
+  "implementation": null,
+  "sourceStage": {
+    "provider": "camoufox",
+    "role": "reconnaissance",
+    "purpose": "source evidence"
+  },
+  "historicalProviderChain": [
+    {
+      "provider": "camoufox",
+      "role": "reconnaissance"
+    },
+    {
+      "provider": "python-node",
+      "role": "implementation",
+      "purpose": "env-patch strategy",
+      "strategy": "env-patch"
+    }
+  ],
+  "requiredCurrentProviderChain": [
+    {
+      "provider": "chromium-recon",
+      "role": "reconnaissance",
+      "purpose": "current-target evidence"
+    },
+    {
+      "provider": "python-node",
+      "role": "implementation",
+      "purpose": "env-patch strategy",
+      "strategy": "env-patch"
+    }
+  ]
+}

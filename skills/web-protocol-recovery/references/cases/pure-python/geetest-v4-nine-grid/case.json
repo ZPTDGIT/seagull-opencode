@@ -1,0 +1,224 @@
+{
+  "schemaVersion": "web-protocol-recovery-case",
+  "caseId": "pure-python-geetest-v4-nine-grid",
+  "revision": 4,
+  "status": "verified",
+  "family": "verifier",
+  "runtime": "pure-python",
+  "caseKind": "implementation",
+  "verificationClass": "freshly-verified",
+  "requiresFreshVerification": true,
+  "secretPolicy": "redacted-pull-live",
+  "match": {
+    "signals": [
+      "vendor:geetest",
+      "version:v4",
+      "captcha-type:nine-grid",
+      "request:risk_type-nine",
+      "response:captcha_type-nine",
+      "response:imgs-ques-nine_nums",
+      "wire:userresponse-one-based-row-col",
+      "verify:data.result-success"
+    ],
+    "minimumIndependentSignals": 3,
+    "requiredSignalGroups": [
+      {
+        "name": "gt4-request-subtype",
+        "anyOf": [
+          "request:risk_type-nine"
+        ]
+      },
+      {
+        "name": "gt4-response-subtype",
+        "anyOf": [
+          "response:captcha_type-nine"
+        ]
+      },
+      {
+        "name": "nine-grid-shape",
+        "anyOf": [
+          "response:imgs-ques-nine_nums",
+          "wire:userresponse-one-based-row-col"
+        ]
+      }
+    ],
+    "negativeSignals": [
+      "captcha-type:slide",
+      "captcha-type:word-click",
+      "captcha-type:icon-click",
+      "vendor:akamai",
+      "vendor:river-security",
+      "alias:ruishu"
+    ]
+  },
+  "exactScopes": [],
+  "protocolPatterns": [
+    "vendor:geetest",
+    "version:v4",
+    "risk_type:nine",
+    "captcha_type:nine",
+    "imgs:composite-grid",
+    "ques:line-art-prompt",
+    "userresponse:one-based-row-col",
+    "answer-cardinality:3",
+    "w:aes-cbc-rsa-pkcs1"
+  ],
+  "product": {
+    "vendor": "Geetest",
+    "product": "CAPTCHA",
+    "version": "v4",
+    "subtype": "nine-grid"
+  },
+  "dependencies": {
+    "python": ">=3.9",
+    "requests": "live collector only",
+    "pillow": "required",
+    "pycryptodome": "required",
+    "torch": "required only for explicitly approved checkpoint execution",
+    "ultralytics": "required only for explicitly approved checkpoint execution",
+    "modelAsset": "assets/geetest_nine_model.pt; hash-bound PyTorch pickle; no network download; explicit per-run execution approval required"
+  },
+  "liveState": {
+    "mode": "none-required-for-offline-proof",
+    "retention": "memory-only",
+    "requiredCookies": [],
+    "optionalCookies": [],
+    "storageKeys": []
+  },
+  "artifacts": {
+    "process": {
+      "path": "PROCESS.md",
+      "sha256": "d31e0e640281b6662c68f4c8581a4d73634f6983636999a9da194bc1dc843dcb"
+    },
+    "entry": {
+      "path": "entry.py",
+      "sha256": "85b4ba2023cc65d772b41b8285fa39f1ef9ce5bf2492efa9638aa91649fa22a6"
+    },
+    "pullLiveState": {
+      "path": "pull_live_state.py",
+      "sha256": "449c01deca075ee786167b744b36bb31d5781fb8ace9e9036436e15ab490e081"
+    },
+    "assets": [
+      {
+        "path": "fixtures/vectors.json",
+        "sha256": "23ebf5da25168244b46243118c4aa239a46561e56ec3483596d27ac44b899e53"
+      },
+      {
+        "path": "fixtures/model-execution-proof.summary.json",
+        "sha256": "4d716096b8be16c200626ab692e4c847887145ec356896acfe1c7c914668b524"
+      },
+      {
+        "path": "assets/geetest_nine_model.pt",
+        "sha256": "3d8c5d99f788438e23855b75e508b1b3238e9dde67800f27369a3bd8c05b053f",
+        "bytes": 10483069,
+        "classification": "user-supplied-model-asset",
+        "serializationRisk": "executable-pickle",
+        "executionPolicy": "explicit-opt-in-after-hash-verification",
+        "storagePolicy": "regular-git-self-contained",
+        "readHint": "10.0 MiB binary PyTorch checkpoint. Do not read it into model context or deserialize it during inspection. Verify SHA-256 first; execute only with explicit per-run work-order approval."
+      },
+      {
+        "path": "assets/labels.txt",
+        "sha256": "9cda82baee968c94051466ffeac23f00983cd2a34294723da3db1c21af5bd0ba",
+        "bytes": 617,
+        "classification": "model-label-asset"
+      },
+      {
+        "path": "assets/MODEL.json",
+        "sha256": "e45815d35c96b9baae0d887207754d5190f2779c2767eca75a68573b6e71eba7"
+      }
+    ]
+  },
+  "verification": {
+    "executed": true,
+    "passed": true,
+    "executedAt": "2026-09-01T14:48:18+08:00",
+    "testCommand": "python -m unittest discover -s tests -v",
+    "testArtifact": {
+      "path": "tests/test_vectors.py",
+      "sha256": "986ab3a62f9922933ffed13aa9f18fe08d19848d4419f1542c5bd3135140de55"
+    },
+    "evidenceArtifact": {
+      "path": "fixtures/vectors.json",
+      "sha256": "23ebf5da25168244b46243118c4aa239a46561e56ec3483596d27ac44b899e53"
+    },
+    "proof": {
+      "activeScope": "offline-only",
+      "offlineAcceptance": "Twenty-seven offline tests pass: entry/test/vector proof binding, narrow model-execution proof boundaries, 86-class model-pack and labels integrity, installed-pack selection and partial-pack rejection, checkpoint execution gating, runtime settings pinning, invalid-round rejection before model loading, embedded-label contract, all four tile-selection branches plus ambiguity rejection, injected recognize_cache flow, cache containment, bounded PoW, one-based userresponse mapping, lot slices, decodeURI behavior, djb2/JS int32, synthetic GCT biht, AES fixed vector, and offline scope marker.",
+      "caseLocalTests": "python -m unittest discover -s tests -v",
+      "currentEntrySha256": "85b4ba2023cc65d772b41b8285fa39f1ef9ce5bf2492efa9638aa91649fa22a6",
+      "currentTestArtifactSha256": "986ab3a62f9922933ffed13aa9f18fe08d19848d4419f1542c5bd3135140de55",
+      "modelExecution": {
+        "currentAcceptance": true,
+        "activeScope": "local-checkpoint-smoke-only",
+        "checkpointLoadedByOfflineSuite": false,
+        "executionProofArtifact": {
+          "path": "fixtures/model-execution-proof.summary.json",
+          "sha256": "4d716096b8be16c200626ab692e4c847887145ec356896acfe1c7c914668b524"
+        },
+        "reason": "An explicitly approved local run loaded the hash-bound checkpoint, matched all 86 embedded class names, and completed three synthetic CPU inferences. This local model proof is separate from the current live acceptance recorded below."
+      },
+      "currentLiveAcceptance": {
+        "classification": "current-source-live-acceptance",
+        "executedAt": "2026-09-01T14:48:18+08:00",
+        "currentAcceptance": true,
+        "rounds": 2,
+        "successPredicate": "status=success and data.result=success and data.fail_count=0",
+        "summary": "Two fresh public-demo nine-grid rounds passed with Python-owned egress and the hash-verified local model; dynamic state was not retained."
+      },
+      "historicalLiveProof": {
+        "classification": "historical-archive-provenance",
+        "executedAt": "2026-07-31",
+        "currentAcceptance": false,
+        "summary": "Fresh current-target Geetest GT4 nine-grid rounds produced semantic result=success with fail_count=0 using Python-owned egress and the bundled model. Live tokens, cookies, payloads, w, challenge images, and absolute paths were not retained. Fresh work-order authorization remains required for future live replay."
+      }
+    }
+  },
+  "implementation": {
+    "mode": "pure-python",
+    "strategy": "execution-gated-model-assisted-tile-consensus",
+    "profile": null
+  },
+  "sourceStage": {
+    "provider": "chromium-recon",
+    "role": "reconnaissance",
+    "purpose": "current-target nine-grid evidence"
+  },
+  "historicalProviderChain": [
+    {
+      "provider": "chromium-recon",
+      "role": "reconnaissance"
+    },
+    {
+      "provider": "verifier",
+      "role": "protocol-recovery"
+    },
+    {
+      "provider": "pure-python",
+      "role": "implementation",
+      "purpose": "model and protocol artifact"
+    },
+    {
+      "provider": "python-collector",
+      "role": "delivery"
+    }
+  ],
+  "requiredCurrentProviderChain": [
+    {
+      "provider": "verifier",
+      "role": "protocol-recovery",
+      "purpose": "current subtype and verifier acceptance"
+    },
+    {
+      "provider": "pure-python",
+      "role": "implementation",
+      "purpose": "offline model and protocol artifact",
+      "ownerProvider": "verifier"
+    },
+    {
+      "provider": "python-collector",
+      "role": "delivery",
+      "purpose": "gated live egress"
+    }
+  ]
+}

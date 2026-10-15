@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "web-protocol-recovery-case",
+  "caseId": "camoufox-jsvmp-dual-sign-cacheopts",
+  "revision": 4,
+  "status": "verified",
+  "family": "signer",
+  "runtime": "python-node",
+  "caseKind": "evidence",
+  "verificationClass": "historical-user-attested",
+  "requiresFreshVerification": true,
+  "secretPolicy": "redacted-pull-live",
+  "match": {
+    "signals": [
+      "sdk:webmssdk",
+      "config:cacheOpts",
+      "header:x-bogus",
+      "header:x-gnarly"
+    ],
+    "minimumIndependentSignals": 2,
+    "negativeSignals": []
+  },
+  "protocolPatterns": [
+    "sdk:webmssdk",
+    "config:cacheOpts",
+    "header:x-bogus",
+    "header:x-gnarly"
+  ],
+  "product": {
+    "vendor": "generic",
+    "product": "JSVMP instrumentation",
+    "version": "legacy",
+    "subtype": "cacheopts-dual-sign"
+  },
+  "dependencies": {
+    "camoufox": "connected runtime",
+    "javascript": "target supplied"
+  },
+  "preRead": [],
+  "liveState": {
+    "mode": "browser-export-json",
+    "retention": "memory-only",
+    "requiredCookies": [],
+    "optionalCookies": [
+      "msToken",
+      "verifyFp",
+      "s_v_web_id"
+    ],
+    "cookieNamePatterns": [],
+    "storageKeys": []
+  },
+  "artifacts": {
+    "process": {
+      "path": "PROCESS.md",
+      "sha256": "e47fc84934fcc2fd861fad0596fbc53771b5b89f91bd32d8bb744a31bf21da44"
+    },
+    "pullLiveState": {
+      "path": "pull_live_state.py",
+      "sha256": "cbd8fea3e91f878400b8df0dae8ab30d79538ffe6f973c5d40a216a1a7cce525"
+    },
+    "assets": []
+  },
+  "verification": {
+    "sourceReference": "95be929~1",
+    "sourceReferenceResolution": {
+      "status": "unresolvable-in-current-repository",
+      "checkedAt": "2026-07-31T14:34:34+08:00",
+      "reason": "The reference is not a full object id and cannot be resolved by the current repository; it is provenance text only."
+    },
+    "requiresFreshVerification": true,
+    "metadataMigratedAt": "2026-08-04T15:15:02+08:00",
+    "lineEndingCorrection": "rev2: recomputed declared hashes against committed LF bytes; prior values hashed a CRLF Windows worktree and were unreproducible from a clean clone. No evidence, verification claim, or route changed.",
+    "routeCorrection": "rev4: requiredCurrentProviderChain now starts at chromium-recon. The historical chain still records camoufox because that is what produced this evidence, but SKILL.md forbids selecting camoufox on historical case provenance, so the current-target chain must not demand it."
+  },
+  "implementation": null,
+  "sourceStage": {
+    "provider": "camoufox",
+    "role": "reconnaissance",
+    "purpose": "source evidence"
+  },
+  "historicalProviderChain": [
+    {
+      "provider": "camoufox",
+      "role": "reconnaissance"
+    },
+    {
+      "provider": "browser-hooks",
+      "role": "protocol-recovery"
+    },
+    {
+      "provider": "ast",
+      "role": "protocol-recovery"
+    }
+  ],
+  "requiredCurrentProviderChain": [
+    {
+      "provider": "chromium-recon",
+      "role": "reconnaissance",
+      "purpose": "current-target evidence"
+    },
+    {
+      "provider": "browser-hooks",
+      "role": "protocol-recovery"
+    },
+    {
+      "provider": "ast",
+      "role": "protocol-recovery"
+    }
+  ]
+}

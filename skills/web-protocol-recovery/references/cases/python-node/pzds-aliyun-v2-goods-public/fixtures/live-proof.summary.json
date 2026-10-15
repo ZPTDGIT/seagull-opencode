@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "web-protocol-recovery-live-proof-summary",
+  "classification": "historical-project-provenance",
+  "currentAcceptance": false,
+  "requiresFreshVerification": true,
+  "executed": true,
+  "passed": true,
+  "executedAt": "2026-08-03",
+  "projectRuntime": "python-node",
+  "browserLifecycle": {
+    "finalCollector": "Python-owned HTTP egress"
+  },
+  "verification": {
+    "offlineSelfcheck": {
+      "passed": true,
+      "checks": [
+        "goods_body_sha256",
+        "field21_vectors",
+        "device_token_roundtrip",
+        "rpc_sign_stable",
+        "data_builder_js",
+        "pzds_wasm_sign_v18",
+        "challenge_html_parse"
+      ]
+    },
+    "businessShape": {
+      "statusCode": 200,
+      "contentType": "application/json",
+      "code": "SUCCESS",
+      "success": true,
+      "recordsCount": 10
+    }
+  },
+  "excluded": [
+    "username",
+    "password",
+    "cookies",
+    "acw_tc",
+    "ssxmod_*",
+    "u_atoken",
+    "u_asig",
+    "CertifyId",
+    "traceid",
+    "gateway token",
+    "raw live response body",
+    "full FeiLin profile body",
+    "absolute project path"
+  ]
+}

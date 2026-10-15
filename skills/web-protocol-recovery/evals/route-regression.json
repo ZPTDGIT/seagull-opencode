@@ -1,0 +1,282 @@
+{
+  "schemaVersion": "web-protocol-recovery-route-regression",
+  "cases": [
+    {
+      "id": "douyin-abogus-native-profile",
+      "prompt": "Existing proved Douyin Web BDMS 1.0.1.19 pure_abogus.py needs fixed-vector maintenance and Python helper adaptation.",
+      "expect": {
+        "shape": "local-proof",
+        "route": "pure-python",
+        "profile": "douyin-abogus-native",
+        "notRoute": ["douyin-abogus-native", "env-patch"]
+      }
+    },
+    {
+      "id": "jd-h5st-pure-python-case",
+      "prompt": "JD h5st 5.3 request_algo 2088b has the pure Python case signals and wants a browser-free signer proof.",
+      "expect": {
+        "shape": "local-proof",
+        "route": "pure-python",
+        "caseId": "pure-python-jd-h5st"
+      }
+    },
+    {
+      "id": "node-env-patch-strategy",
+      "prompt": "Known JS signer entry only misses navigator and DOM descriptor surfaces under Node vm/jsdom.",
+      "expect": {
+        "shape": "local-proof",
+        "route": "python-node",
+        "strategy": "env-patch",
+        "notRoute": ["env-patch"]
+      }
+    },
+    {
+      "id": "nv8-full-browser-runtime",
+      "prompt": "An Akamai sensor or Kasada ips.js collector needs full DOM, Canvas, WebGL, Audio, Worker, and network-capture surfaces in a browser-free Node 24 runtime.",
+      "expect": {
+        "shape": "local-proof",
+        "route": "nv8",
+        "implementationMode": "python-node"
+      }
+    },
+    {
+      "id": "gt4-verifier-owner",
+      "prompt": "Geetest GT4 slider returns non-empty w but data.result is fail; /load has risk_type=slide and bg/slice. Need one coherent slider verifier round and proof criteria.",
+      "expect": {
+        "shape": "local-proof",
+        "route": "verifier",
+        "gateFamily": "verifier"
+      }
+    },
+    {
+      "id": "gt4-word-click-verifier",
+      "prompt": "实现 Geetest GT4 文字点选 browser-free collector。/load 使用 risk_type=word，响应包含 captcha_type=word、imgs 和 ques；需要识别目标文字、转换点击坐标、用 iv8 生成 w，并由 Python 提交 /verify。",
+      "expect": {
+        "shape": "collector",
+        "route": "verifier",
+        "gateFamily": "verifier",
+        "familyReference": "geetest-gt4-word-workflow.md",
+        "implementation": "iv8",
+        "deliveryProvider": "python-collector"
+      }
+    },
+    {
+      "id": "gt4-nine-grid-verifier",
+      "prompt": "Implement a Geetest GT4 nine-grid browser-free collector. The request uses risk_type=nine; /load returns captcha_type=nine, imgs, ques, and nine_nums=3. Use the hash-verified model only after checkpoint approval, map three tile indices to one-based row/column userresponse, and let Python submit /verify.",
+      "expect": {
+        "shape": "collector",
+        "route": "verifier",
+        "gateFamily": "verifier",
+        "familyReference": "geetest-gt4-nine-grid-workflow.md",
+        "implementation": "pure-python",
+        "deliveryProvider": "python-collector"
+      }
+    },
+    {
+      "id": "reese84-protocol-owner",
+      "prompt": "A capture has a reese84 cookie, matching x-d-token, initializeProtection challenge script, and a solution response with token, renewInSec, and cookieDomain; prove the challenge state before Python replay.",
+      "expect": {
+        "shape": "evidence",
+        "route": "reese84",
+        "gateFamily": "challenge",
+        "protocolOwner": "reese84"
+      }
+    },
+    {
+      "id": "imperva-generic-negative",
+      "prompt": "The page only shows Imperva Pardon Our Interruption, HTTP 403, and one visid_incap cookie; no reese84, x-d-token, challenge script, or token response is captured.",
+      "expect": {
+        "shape": "evidence",
+        "route": "evidence-reuse"
+      }
+    },
+    {
+      "id": "proved-protocol-python-delivery",
+      "prompt": "Endpoint, moving state, fixed vectors, and request budget are approved; build the final browser-free Python collector.",
+      "expect": {
+        "shape": "collector",
+        "route": "python-collector",
+        "deliveryProvider": "python-collector"
+      }
+    },
+    {
+      "id": "browser-hooks-reversible-entry",
+      "prompt": "The task is to locate a sign entry with reversible browser hooks and return writer/consumer evidence; do not recover the whole implementation yet.",
+      "expect": {
+        "shape": "local-proof",
+        "route": "browser-hooks"
+      }
+    },
+    {
+      "id": "ast-control-flow-recovery",
+      "prompt": "The supplied file is a known obfuscated protocol module; recover its whole-file control flow and call graph before choosing a runtime.",
+      "expect": {
+        "shape": "local-proof",
+        "route": "ast"
+      }
+    },
+    {
+      "id": "explicit-camoufox-engine-trace",
+      "prompt": "The user explicitly requests Camoufox SpiderMonkey engine-level property tracing because the first-engine evidence is untrustworthy.",
+      "expect": {
+        "shape": "evidence",
+        "route": "camoufox"
+      }
+    },
+    {
+      "id": "wechat-miniapp-protocol",
+      "prompt": "An authorized WeChat miniapp request has a moving token and the first task is to capture the miniapp network boundary, not to write a collector.",
+      "expect": {
+        "shape": "evidence",
+        "route": "wechat-miniapp"
+      }
+    },
+    {
+      "id": "wmpf-address-maintenance",
+      "prompt": "我的 WMPFDebugger 随微信更新后缺少 addresses.25558.json。请只分析本机授权的 flue.dll，定位 LoadStartHookOffset、CDPFilterHookOffset 和 SceneOffsets，并原子写入 frida/config/addresses.<version>.json，不要从网站下载地址库，也不要做网络采集。",
+      "expect": {
+        "shape": "local-proof",
+        "route": "wmpf-address-adapter"
+      }
+    },
+    {
+      "id": "wmpf-address-negative-miniapp-network",
+      "prompt": "我只想抓取微信小程序的 API 请求、脚本入口和 AppService 网络参数，不需要更新 native hook 地址或 address 配置。",
+      "expect": {
+        "shape": "evidence",
+        "route": "wechat-miniapp",
+        "notRoute": []
+      }
+    },
+    {
+      "id": "known-iv8-artifact-boundary",
+      "prompt": "The JavaScript challenge entry is known and iv8 must produce one narrow local artifact for Python; no live business HTTP belongs inside iv8.",
+      "expect": {
+        "shape": "local-proof",
+        "route": "iv8"
+      }
+    },
+    {
+      "id": "akamai-sensor-state-machine",
+      "prompt": "The first hop sets _abck and bm_sz, the page POSTs sensor_data, and the business API only answers after two rounds; recover the protocol before any browser-free Python request.",
+      "expect": {
+        "shape": "evidence",
+        "route": "akamai",
+        "gateFamily": "challenge",
+        "protocolOwner": "akamai"
+      }
+    },
+    {
+      "id": "river-security-412-challenge",
+      "prompt": "The site answers 412 with $_ts.nsd, $_ts.cd, a script tag carrying r=\"m\", and XxxS/XxxT cookies; classify the subtype and recover the challenge.",
+      "expect": {
+        "shape": "evidence",
+        "route": "river-security",
+        "gateFamily": "challenge",
+        "protocolOwner": "river-security"
+      }
+    },
+    {
+      "id": "default-reconnaissance-without-engine-criteria",
+      "prompt": "An unknown target needs first-turn network and entry evidence; nothing in the capture is untrustworthy at the engine level and no SpiderMonkey property tracing was requested.",
+      "expect": {
+        "shape": "evidence",
+        "route": "chromium-recon"
+      }
+    },
+    {
+      "id": "reese84-native-without-corroboration",
+      "prompt": "Only a reese84 cookie and matching x-d-token are captured; no challenge path, solution response, cookie transition, resource marker, or business consumer is available.",
+      "expect": {
+        "shape": "evidence",
+        "route": "evidence-reuse"
+      }
+    },
+    {
+      "id": "aliyun-v3-verifier-family",
+      "prompt": "An Aliyun captcha round contains InitCaptchaV3, VerifyCaptchaV3, CaptchaType PUZZLE, and a 3.28.0 pe.032 StaticPath; yesterday it returned T001 and today it returns F001. Classify the family before any live replay.",
+      "expect": {
+        "shape": "evidence",
+        "route": "verifier",
+        "gateFamily": "verifier",
+        "familyReference": "aliyun-captcha-v3-workflow.md"
+      }
+    },
+    {
+      "id": "aliyun-feilin-generation-ambiguous",
+      "prompt": "The capture only shows DeviceConfig, Log2, Log3, FeiLin state, and T001/F001; InitCaptcha and the sg/pe StaticPath are missing. Choose the Aliyun captcha generation.",
+      "expect": {
+        "shape": "evidence",
+        "route": "verifier",
+        "familyDecision": "clarify-before-reference-read"
+      }
+    },
+    {
+      "id": "aliyun-rpc-not-verifier",
+      "prompt": "A supplied ordinary Aliyun RPC request has a bad Signature and an acw_sc__v2 cookie, but no captcha Init, Verify, image, or verifier response. Recover the request evidence without forcing Captcha V3.",
+      "expect": {
+        "shape": "evidence",
+        "route": "evidence-reuse",
+        "notProtocolOwner": "verifier"
+      }
+    },
+    {
+      "id": "pzds-aliyun-v2-goods-public",
+      "prompt": "Implement a browser-free PZDS goodsPublic/page collector. The business response exposes an Aliyun V2 challenge with InitCaptchaV2, UploadLog, Log2, Log3, VerifyCaptchaV2, and the final replay needs u_atoken/u_asig.",
+      "expect": {
+        "shape": "collector",
+        "route": "verifier",
+        "gateFamily": "verifier",
+        "familyReference": "aliyun-captcha-v2-workflow.md",
+        "caseId": "python-node-pzds-aliyun-v2-goods-public",
+        "deliveryProvider": "python-collector"
+      }
+    },
+    {
+      "id": "kasada-protocol-owner",
+      "prompt": "A capture returns 429 with x-kpsdk-ct headers and KP_UIDz cookies, a window.KPSDK bootstrap, a double-UUID /ips.js collector path, and a /tl sensor POST. Recover a browser-free x-kpsdk-ct on a coherent egress before business replay.",
+      "expect": {
+        "shape": "local-proof",
+        "route": "kasada"
+      }
+    },
+    {
+      "id": "gt4-work-order-scope-contract",
+      "prompt": "A GT4 delivery work-order contains duplicate /load scopes and a static.geetest.com allow-all scope. Validate the live egress boundary before any request.",
+      "expect": {
+        "shape": "collector",
+        "route": "verifier",
+        "gateFamily": "verifier",
+        "scopePolicy": "exact-gt4-endpoints-only"
+      }
+    },
+    {
+      "id": "pzds-target-code-execution-gate",
+      "prompt": "A PZDS case has hash-bound JavaScript and WASM assets but no bounded process launcher is configured. It asks to run Node for a fixed vector.",
+      "expect": {
+        "shape": "collector",
+        "route": "verifier",
+        "executionPolicy": "blocked-without-approved-runner"
+      }
+    },
+    {
+      "id": "transport-only-source-complete",
+      "prompt": "A complete WSS transcript includes handshake, auth, subscribe, heartbeat, frame order, initiator/source boundary, and business consumption, with no signer or challenge gate.",
+      "expect": {
+        "shape": "evidence",
+        "route": "chromium-recon",
+        "gateFamily": "transport",
+        "jsReverseHalf": "not-required"
+      }
+    },
+    {
+      "id": "read-budget-extension-one-shot",
+      "prompt": "The task has consumed 24 read paths and one named blocker requires three new files. Request one bounded read-budget extension and then a second extension.",
+      "expect": {
+        "shape": "evidence",
+        "route": "evidence-reuse",
+        "readBudget": "one-extension-only"
+      }
+    }
+  ]
+}

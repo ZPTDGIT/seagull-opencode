@@ -1,0 +1,147 @@
+{
+  "schemaVersion": "web-protocol-recovery-case",
+  "caseId": "iv8-cqvip-journal-search",
+  "revision": 4,
+  "status": "verified",
+  "family": "challenge",
+  "runtime": "iv8",
+  "caseKind": "evidence",
+  "verificationClass": "historical-user-attested",
+  "requiresFreshVerification": true,
+  "secretPolicy": "redacted-pull-live",
+  "match": {
+    "signals": [
+      "vendor:river-security",
+      "alias:ruishu",
+      "challenge:http-412",
+      "state:$_ts-nsd-cd",
+      "script-attr:r-m",
+      "cookie:generated-t",
+      "flow:search-replay",
+      "site:cqvip"
+    ],
+    "minimumIndependentSignals": 3,
+    "negativeSignals": [
+      "version:6",
+      "cookie:client-T-suffix",
+      "runtime:python-node",
+      "site:chinatax",
+      "site:chng",
+      "site:customs"
+    ]
+  },
+  "protocolPatterns": [
+    "vendor:river-security",
+    "alias:ruishu",
+    "challenge:http-412",
+    "state:$_ts-nsd-cd",
+    "script-attr:r-m",
+    "cookie:generated-t",
+    "flow:search-replay",
+    "site:cqvip"
+  ],
+  "exactScopes": [
+    {
+      "scheme": "https",
+      "host": "qikan.cqvip.com",
+      "port": 443,
+      "routePrefix": "/Qikan/Search"
+    },
+    {
+      "scheme": "https",
+      "host": "qikan.cqvip.com",
+      "port": 443,
+      "routePrefix": "/Search"
+    }
+  ],
+  "product": {
+    "vendor": "River Security",
+    "product": "JS challenge",
+    "version": "unknown",
+    "subtype": "cqvip-search"
+  },
+  "preRead": [
+    {
+      "path": "references/providers/implementation/iv8/references/api-inventory.md",
+      "sha256": "f642f9afc27313e14722c9ec608208284385be913d2dcb573e424306dc195430"
+    }
+  ],
+  "liveState": {
+    "mode": "browser-export-json",
+    "retention": "memory-only",
+    "requiredCookies": [],
+    "optionalCookies": [],
+    "cookieNamePatterns": [],
+    "storageKeys": []
+  },
+  "artifacts": {
+    "process": {
+      "path": "PROCESS.md",
+      "sha256": "f95988a688196c09d79802e075c4879276d74ed4f660a80762bb382c34eae939"
+    },
+    "pullLiveState": {
+      "path": "pull_live_state.py",
+      "sha256": "7f7156cd1bc79c0b92daf5573826e7cecc387f40d49f160ee2d57fca615a0fa1"
+    },
+    "assets": []
+  },
+  "verification": {
+    "sourceCommit": "1e719718a25a52776b28518948715e6238576fe0",
+    "requiresFreshVerification": true,
+    "metadataMigratedAt": "2026-07-30T20:11:59+08:00",
+    "activeCaseScope": "template-evidence-only",
+    "dependencyPolicy": "historical-only; do not install from case reuse",
+    "migration": "Removed the active placeholder entry and corrected PROCESS.md to historical evidence-only guidance; archived implementation remains hash-bound and study-only.",
+    "lineEndingCorrection": "rev4: recomputed declared hashes against committed LF bytes; prior values hashed a CRLF Windows worktree and were unreproducible from a clean clone. No evidence, verification claim, or route changed."
+  },
+  "implementation": null,
+  "sourceStage": {
+    "provider": "iv8",
+    "role": "implementation",
+    "purpose": "source evidence"
+  },
+  "historicalProviderChain": [
+    {
+      "provider": "iv8",
+      "role": "implementation"
+    },
+    {
+      "provider": "python-collector",
+      "role": "delivery"
+    }
+  ],
+  "requiredCurrentProviderChain": [
+    {
+      "provider": "river-security",
+      "role": "protocol-recovery",
+      "purpose": "protocol owner"
+    },
+    {
+      "provider": "iv8",
+      "role": "implementation",
+      "purpose": "artifact implementation",
+      "ownerProvider": "river-security"
+    },
+    {
+      "provider": "python-collector",
+      "role": "delivery",
+      "purpose": "delivery"
+    }
+  ],
+  "historicalReferences": [
+    {
+      "manifestPath": "references/case-live-reference-archive/MANIFEST.json",
+      "archivePath": "references/case-live-reference-archive/iv8/cqvip-journal-search/entry.py",
+      "sha256": "bd0d6ebbf0b42412ab165a3a7616403f25bc550c2047af9fb490cc87f4ab9413",
+      "bytes": 8828,
+      "sourceCommit": "1e719718a25a52776b28518948715e6238576fe0",
+      "readPolicy": "study-only"
+    }
+  ],
+  "historicalDependencies": {
+    "python": ">=3.9",
+    "iv8": "installed runtime",
+    "requests": "installed",
+    "loguru": "optional"
+  }
+}
